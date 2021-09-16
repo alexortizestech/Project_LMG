@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    
+    public bool UnableObject;
+    public bool Nailed2;
     public PlayerJump Jump;
     public CharacterMovement cm;
     public CharacterController cc;
     public GameObject Player;
     public bool isSpawned;
-    public KeyCode Tp;
+    public KeyCode Slash;
     public KeyCode Spawn;
     public KeyCode Cancel;
     public GameObject tpObject;
@@ -22,8 +23,10 @@ public class Teleport : MonoBehaviour
     public Vector3 endPosition;
     public Vector3 SpawnPoint;
     public Vector3 Min;
+    public Vector3 SlashDir;
     public CollisionScript CS;
-    
+    public float _dashSpeed = 0.001f;
+    public float _dashTime = 0.01f;
     public float hookshotSpeed = 1f;
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,7 @@ public class Teleport : MonoBehaviour
     {
          origin = new Vector2(PlayerPos.transform.position.x, PlayerPos.transform.position.y);
          direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
+         SlashDir = new Vector3(direction.x, direction.y, 0);
         
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
@@ -55,8 +59,14 @@ public class Teleport : MonoBehaviour
         
         if (Input.GetKeyDown(Spawn))
         {
+            if (isSpawned && !UnableObject)
+            {
+                tpAction();
 
-            if (!isSpawned)
+            }
+            else if (!isSpawned && !UnableObject)
+
+
             {
                 if (Vector3.Distance(endPosition, PlayerPos.transform.position) >= 1)
                 {
@@ -68,24 +78,27 @@ public class Teleport : MonoBehaviour
                 }
                     
             }
-         
-            
-        }
 
-        if (Input.GetKeyDown(Tp))
-        {
-            if (isSpawned)
+           
+            if (UnableObject)
             {
-                tpAction();
-
+                if (hit.transform.tag == "Wall")
+                {
+                    Nailed2 = true;
+                }
+                InstantTeleport();
+                
             }
 
         }
+
 
         if (Input.GetKeyDown(Cancel) || Input.GetKeyDown(Jump.Jump))
         {
             CancelHook();
         }
+
+       
     }
 
 
@@ -110,6 +123,7 @@ public class Teleport : MonoBehaviour
 
 
         transform.position = Vector3.MoveTowards(transform.position, SpawnPoint, hookshotSpeed);
+       
         cm.velocity = dir;
 
         if (CS.Nailed)
@@ -136,8 +150,22 @@ public class Teleport : MonoBehaviour
         Destroy(clone);
     }
 
+    void InstantTeleport()
+    {
+        cc.enabled = false;
 
- 
-  
+        
+        transform.position = endPosition;
+        if (Nailed2)
+        {
+            cc.enabled = false;
+        }
+        else
+        {
+            cc.enabled = true;
+        }
+
+    }
+
 
 }

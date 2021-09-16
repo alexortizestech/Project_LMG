@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public float gravity = 20.0F;
     public float jumpSpeed;
     public Vector2 maximumSpeed = new Vector2(1.0f, 1.0f);
-    public Vector2 velocity = new Vector2();
+    public Vector2 velocity = new Vector2().normalized;
     
     void Start()
     {
@@ -22,6 +22,7 @@ public class CharacterMovement : MonoBehaviour
        
         velocity.x = Input.GetAxis("Horizontal") * maximumSpeed.x;
         controller.Move(velocity * Time.deltaTime);
+        //transform.Translate(velocity * Time.deltaTime);
     }
 
 }

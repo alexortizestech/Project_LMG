@@ -25,7 +25,7 @@ public class PlayerJump : MonoBehaviour
         Ray ray = new Ray(feetPos.transform.position, Vector3.down);
 
         isGrounded = Physics.Raycast(ray, distanceToGround, LayerMask.GetMask("Ground"));
-        if (isGrounded && Input.GetKeyDown(Jump))
+        if (isGrounded && Input.GetKey(Jump))
         {
             cm.velocity.y = cm.jumpSpeed;
         }
