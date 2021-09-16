@@ -28,6 +28,7 @@ public class Teleport : MonoBehaviour
     public float _dashSpeed = 0.001f;
     public float _dashTime = 0.01f;
     public float hookshotSpeed = 1f;
+    public float count;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,15 +55,16 @@ public class Teleport : MonoBehaviour
 
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
         Debug.Log(endPosition);
-          
 
+        
         
         if (Input.GetKeyDown(Spawn))
         {
             if (isSpawned && !UnableObject)
             {
                 tpAction();
-
+                
+                
             }
             else if (!isSpawned && !UnableObject)
 
@@ -76,7 +78,10 @@ public class Teleport : MonoBehaviour
                 {
                     CancelHook();
                 }
-                    
+                if (clone == null)
+                {
+                    CancelHook();
+                }
             }
 
            
@@ -89,33 +94,50 @@ public class Teleport : MonoBehaviour
                 InstantTeleport();
                 
             }
-
+            
         }
 
 
-        if (Input.GetKeyDown(Cancel) || Input.GetKeyDown(Jump.Jump))
+        if (isSpawned)
+        {
+            if (clone == null)
+            {
+                CancelHook();
+            }
+        }
+        
+        if (Input.GetKeyDown(Cancel))
         {
             CancelHook();
         }
 
-       
+        if (CS.Nailed)
+        {
+            count += 1 * Time.deltaTime;
+            if(count>3f)
+            {
+                CancelHook();
+            }
+        }
     }
 
 
     void SpawnAction()
     {
-        
+        count = 0;
         isSpawned = true;
         clone = Instantiate(tpObject);
         clone.transform.position = endPosition;
         SpawnPoint = new Vector3(clone.transform.position.x, clone.transform.position.y,0);
         CS = clone.GetComponent <CollisionScript>();
+        Destroy(clone, 3f);
 ;        
       
     }
 
     public void tpAction()
     {
+        count = 0;
 
         Vector3 dir = (SpawnPoint - transform.position).normalized;
        
@@ -147,7 +169,12 @@ public class Teleport : MonoBehaviour
     {
         cc.enabled = true;
         isSpawned = false;
-        Destroy(clone);
+        if (clone)
+        {
+            Destroy(clone);
+        }
+      
+        count = 0;
     }
 
     void InstantTeleport()
