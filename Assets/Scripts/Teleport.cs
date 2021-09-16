@@ -54,7 +54,7 @@ public class Teleport : MonoBehaviour
        
 
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
-        Debug.Log(endPosition);
+      //  Debug.Log(endPosition);
 
         
         
@@ -110,7 +110,7 @@ public class Teleport : MonoBehaviour
         {
             CancelHook();
         }
-
+        
         if (CS.Nailed)
         {
             count += 1 * Time.deltaTime;

@@ -31,8 +31,10 @@ public class Dash : MonoBehaviour
     {
         if (Input.GetKeyDown(Slash)) //Right mouse button
         {
+            controller.enabled = true;
             currentDashTime = 0;
             cm.velocity.y = 0;
+
 
         }
         if (currentDashTime < maxDashTime)
@@ -47,6 +49,22 @@ public class Dash : MonoBehaviour
             moveDirection = Vector3.zero;
         }
         controller.Move(moveDirection * Time.deltaTime * dashSpeed);
+
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Inside");
+            if (isSlashing)
+            {
+                Debug.Log("Killed");
+                Destroy(other.gameObject);
+            }
+        }
     }
 }
     
