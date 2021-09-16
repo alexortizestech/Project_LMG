@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     // Start is called before the first frame update
+    public KeyCode Jump;
     public Transform feetPos;
     public bool isGrounded;
     public float distanceToGround;
@@ -24,7 +25,7 @@ public class PlayerJump : MonoBehaviour
         Ray ray = new Ray(feetPos.transform.position, Vector3.down);
 
         isGrounded = Physics.Raycast(ray, distanceToGround, LayerMask.GetMask("Ground"));
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetKeyDown(Jump))
         {
             cm.velocity.y = cm.jumpSpeed;
         }

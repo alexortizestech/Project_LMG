@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    
     public PlayerJump Jump;
+    public CharacterMovement cm;
     public CharacterController cc;
     public GameObject Player;
     public bool isSpawned;
     public KeyCode Tp;
     public KeyCode Spawn;
+    public KeyCode Cancel;
     public GameObject tpObject;
     public GameObject clone;
     public float length;
@@ -17,18 +20,22 @@ public class Teleport : MonoBehaviour
     public Vector2 origin;
     public Vector2 direction;
     public Vector3 endPosition;
-    public Vector2 SpawnPoint;
+    public Vector3 SpawnPoint;
+    public Vector3 Min;
+    public CollisionScript CS;
+    
+    public float hookshotSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
-          
+        Min = new Vector3(1, 1, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
          origin = new Vector2(PlayerPos.transform.position.x, PlayerPos.transform.position.y);
-         direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+         direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
         
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
@@ -36,6 +43,7 @@ public class Teleport : MonoBehaviour
         if (Physics.Raycast(ray, out hit, length))
         {
             endPosition = new Vector3(hit.point.x, hit.point.y, 0);
+            
         }
 
        
@@ -50,7 +58,15 @@ public class Teleport : MonoBehaviour
 
             if (!isSpawned)
             {
-                SpawnAction();
+                if (Vector3.Distance(endPosition, PlayerPos.transform.position) >= 1)
+                {
+                    SpawnAction();
+                }
+                else
+                {
+                    CancelHook();
+                }
+                    
             }
          
             
@@ -66,6 +82,10 @@ public class Teleport : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(Cancel) || Input.GetKeyDown(Jump.Jump))
+        {
+            CancelHook();
+        }
     }
 
 
@@ -74,19 +94,50 @@ public class Teleport : MonoBehaviour
         
         isSpawned = true;
         clone = Instantiate(tpObject);
-        clone.transform.Translate(endPosition);
-        SpawnPoint = new Vector2(clone.transform.position.x, clone.transform.position.y);
-       
+        clone.transform.position = endPosition;
+        SpawnPoint = new Vector3(clone.transform.position.x, clone.transform.position.y,0);
+        CS = clone.GetComponent <CollisionScript>();
+;        
+      
     }
 
     public void tpAction()
     {
-        cc.enabled = false;
-        transform.position = SpawnPoint;
-        cc.enabled = true;
+
+        Vector3 dir = (SpawnPoint - transform.position).normalized;
+       
+         cc.enabled = false;
+
+
+        transform.position = Vector3.MoveTowards(transform.position, SpawnPoint, hookshotSpeed);
+        cm.velocity = dir;
+
+        if (CS.Nailed)
+        {
+            cc.enabled = false;
+            
+        }
+        else
+        {
+            cc.enabled = true;
+        }
+        
         //Jump.enabled = false;
         isSpawned = false;
         Destroy(clone);
+        
     }
+
+
+    public void CancelHook()
+    {
+        cc.enabled = true;
+        isSpawned = false;
+        Destroy(clone);
+    }
+
+
+ 
+  
 
 }
