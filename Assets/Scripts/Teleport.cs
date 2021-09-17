@@ -27,13 +27,15 @@ public class Teleport : MonoBehaviour
     public CollisionScript CS;
     public float _dashSpeed = 0.001f;
     public float _dashTime = 0.01f;
-    public float hookshotSpeed = 1f;
+    public float hookshotSpeed = 10f;
     public float count;
     public LayerMask Wall;
+    public Vector3 freezePos;
     // Start is called before the first frame update
     void Start()
     {
         Min = new Vector3(1, 1, 0);
+        cc.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class Teleport : MonoBehaviour
         }
 
 
-         Velocity = (endPosition - this.transform.position);
+        
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
       //  Debug.Log(endPosition);
 
@@ -62,44 +64,9 @@ public class Teleport : MonoBehaviour
         
         if (Input.GetKeyDown(Spawn))
         {
-            if (isSpawned && !UnableObject)
-            {
-                
-                if (hit.transform.tag == "Wall"){
-                    tpAction();
-                }
-               
-                
-                
-            }
-            else if (!isSpawned && !UnableObject)
-
-
-            {
-                if (Vector3.Distance(endPosition, PlayerPos.transform.position) >= 1)
-                {
-                    SpawnAction();
-                }
-                else
-                {
-                    CancelHook();
-                }
-                if (clone == null)
-                {
-                    CancelHook();
-                }
-            }
-
+            Velocity = (hit.point - this.transform.position);
+            cc.Move(Velocity);
            
-            if (UnableObject)
-            {
-                if (hit.transform.tag == "Wall")
-                {
-                    Nailed2 = true;
-                }
-                InstantTeleport();
-                
-            }
             
         }
 
@@ -183,23 +150,15 @@ public class Teleport : MonoBehaviour
         count = 0;
     }
 
-    void InstantTeleport()
+  
+    private void OnTriggerStay(Collider other)
     {
-        //cc.enabled = false;
-
-
-        cc.Move(Velocity);
-
-
-
-     /*    do
+        if (other.CompareTag("Nailer"))
         {
-            cm.velocity.y = transform.position.y;
-            cm.velocity.x = transform.position.x;
+            cm.velocity = freezePos;
+        }
 
-        } while (Nailed2==true);
-       
-        */
+
     }
 
 

@@ -10,19 +10,21 @@ public class CharacterMovement : MonoBehaviour
     public float jumpSpeed;
     public Vector2 maximumSpeed = new Vector2(1.0f, 1.0f);
     public Vector2 velocity = new Vector2().normalized;
-    
+    float speed;
+    Rigidbody rb;
+
     void Start()
     {
+        speed = 5;
          controller= GetComponent<CharacterController>();
-
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-       
-        velocity.x = Input.GetAxis("Horizontal") * maximumSpeed.x;
-        controller.Move(velocity * Time.deltaTime);
-        //transform.Translate(velocity * Time.deltaTime);
+
+        velocity.x = Input.GetAxisRaw("Horizontal");
+        controller.Move(velocity * Time.deltaTime * maximumSpeed);
     }
 
 }
