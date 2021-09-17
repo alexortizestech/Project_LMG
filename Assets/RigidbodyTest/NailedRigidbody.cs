@@ -49,7 +49,7 @@ public class NailedRigidbody : MonoBehaviour
 
 
             UnFreeze();
-
+            count = 0;
             isHooking = true;
             HookDirection = (hit.point - transform.position);
             rb.velocity = HookDirection.normalized * HookSpeed;
