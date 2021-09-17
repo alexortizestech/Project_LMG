@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PointerScreen : MonoBehaviour
 {
-    public Teleport tp;
+    public NailedRigidbody NR;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,6 @@ public class PointerScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = tp.endPosition;
+        transform.position = NR.endPosition;
     }
 }

@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class NailedRigidbody : MonoBehaviour
 {
-    RigidbodyConstraints originalConstraints;
+    
     public bool isHooking;
     public Transform PlayerPos;
     public Vector2 origin, direction;
-    Vector3 endPosition;
+    public Vector3 endPosition;
     public float length;
     public KeyCode Hook;
     public KeyCode Cancel;
     public float HookSpeed;
     Rigidbody rb;
     bool isGrappling = false;
+    public float count;
     Vector3 HookDirection;
+    public float limitTime;
     // Start is called before the first frame update
     void Start()
     {
         
         rb = GetComponent<Rigidbody>();
-        originalConstraints = rb.constraints;
+        
     }
 
     // Update is called once per frame
@@ -62,6 +64,16 @@ public class NailedRigidbody : MonoBehaviour
             CancelHook();
         }
 
+
+        if (isHooking)
+        {
+            count+=1*Time.deltaTime;
+            if (count >= limitTime)
+            {
+                isHooking = false;
+                CancelHook();
+            }
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -83,7 +95,7 @@ public class NailedRigidbody : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
-    public void CancelHook()
+    void CancelHook()
     {
         
         UnFreeze();

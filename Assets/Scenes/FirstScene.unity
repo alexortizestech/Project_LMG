@@ -542,10 +542,13 @@ MonoBehaviour:
   PlayerPos: {fileID: 237137422}
   origin: {x: 0, y: 0}
   direction: {x: 0, y: 0}
+  endPosition: {x: 0, y: 0, z: 0}
   length: 50
   Hook: 330
   Cancel: 332
   HookSpeed: 50
+  count: 0
+  limitTime: 5
 --- !u!114 &237137424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cee2221f2b88ab438118955357ce11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tp: {fileID: 701849114}
+  NR: {fileID: 237137423}
 --- !u!1 &256673472
 GameObject:
   m_ObjectHideFlags: 0

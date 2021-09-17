@@ -37,11 +37,12 @@ public class Slash : MonoBehaviour
     {
         if (Input.GetKeyDown(Attack) && CountSlash == 1) //Right mouse button
         {
+            isSlashing = true;
             CountSlash = 0;
             
             currentDashTime = 0;
 
-            isSlashing = true;
+           
             
 
         }
@@ -55,9 +56,10 @@ public class Slash : MonoBehaviour
         }
         else
         {
-            isSlashing = false;
+            
             moveDirection = Vector3.zero;
             DamageDone = false;
+            isSlashing = false;
 
         }
 
