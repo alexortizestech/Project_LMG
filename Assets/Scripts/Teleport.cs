@@ -29,6 +29,7 @@ public class Teleport : MonoBehaviour
     public float _dashTime = 0.01f;
     public float hookshotSpeed = 1f;
     public float count;
+    public LayerMask Wall;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,8 @@ public class Teleport : MonoBehaviour
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
         endPosition = origin + (length * direction);
-        if (Physics.Raycast(ray, out hit, length))
+
+        if (Physics.Raycast(ray, out hit, length,Wall))
         {
             endPosition = new Vector3(hit.point.x, hit.point.y, 0);
             
@@ -144,7 +146,7 @@ public class Teleport : MonoBehaviour
          cc.enabled = false;
 
 
-        transform.position = Vector3.MoveTowards(transform.position, SpawnPoint, hookshotSpeed);
+        transform.position += Vector3.MoveTowards(transform.position, SpawnPoint, hookshotSpeed);
        
         cm.velocity = dir;
 

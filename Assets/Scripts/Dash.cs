@@ -9,13 +9,14 @@ public class Dash : MonoBehaviour
     public Vector3 moveDirection;
     public KeyCode Slash;
     public const float maxDashTime = 1.0f;
-    public float dashDistance = 10;
+    public float dashDistance = 100;
     public float dashStoppingSpeed = 0.1f;
     float currentDashTime = maxDashTime;
-    float dashSpeed = 6;
+    float dashSpeed = 1;
     CharacterController controller;
     Teleport tp;
     CharacterMovement cm;
+    BaseEnemy Enemy;
 
 
 
@@ -34,7 +35,7 @@ public class Dash : MonoBehaviour
             controller.enabled = true;
             currentDashTime = 0;
             cm.velocity.y = 0;
-
+           
 
         }
         if (currentDashTime < maxDashTime)
@@ -54,6 +55,19 @@ public class Dash : MonoBehaviour
         
     }
 
+
+    IEnumerator ExampleCoroutine()
+    {
+
+
+
+        isSlashing = true;
+        yield return new WaitForSeconds(1);
+        isSlashing = false;
+
+        
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -61,8 +75,8 @@ public class Dash : MonoBehaviour
             Debug.Log("Inside");
             if (isSlashing)
             {
-                Debug.Log("Killed");
-                Destroy(other.gameObject);
+                Enemy = other.GetComponent<BaseEnemy>();
+                Enemy.Health--;
             }
         }
     }
