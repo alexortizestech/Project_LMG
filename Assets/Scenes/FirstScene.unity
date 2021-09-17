@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 237137421}
   - component: {fileID: 237137420}
   - component: {fileID: 237137419}
+  - component: {fileID: 237137424}
   - component: {fileID: 237137418}
   - component: {fileID: 237137423}
   - component: {fileID: 237137417}
@@ -427,7 +428,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  jump: {x: 0, y: 2, z: 0}
   JumpForce: 7.5
   Jump: 331
   speed: 5
@@ -519,7 +519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237137416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.75, y: 0.42, z: 0}
+  m_LocalPosition: {x: 4.75, y: -0.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 721393338}
@@ -546,6 +546,27 @@ MonoBehaviour:
   Hook: 330
   Cancel: 332
   HookSpeed: 50
+--- !u!114 &237137424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237137416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be4ec95254aa7a44808e28757ccc123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageDone: 0
+  Damage: 0
+  CountSlash: 0
+  isSlashing: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  Attack: 333
+  dashDistance: 25
+  dashStoppingSpeed: 0.1
+  NR: {fileID: 237137423}
 --- !u!1 &250676272
 GameObject:
   m_ObjectHideFlags: 0

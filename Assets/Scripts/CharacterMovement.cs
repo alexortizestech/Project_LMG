@@ -22,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-
+        
         velocity.x = Input.GetAxisRaw("Horizontal");
         controller.Move(velocity * Time.deltaTime * maximumSpeed);
     }
