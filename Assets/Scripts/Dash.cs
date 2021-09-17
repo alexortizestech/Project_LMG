@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    public bool DamageDone;
     // Start is called before the first frame update
+    public float Damage;
+    public float CountSlash;
     public bool isSlashing;
     public Vector3 moveDirection;
     public KeyCode Slash;
@@ -22,6 +25,9 @@ public class Dash : MonoBehaviour
 
     private void Awake()
     {
+
+        CountSlash = 1;
+        Damage = 1;
         cm = GetComponent<CharacterMovement>();
         controller = GetComponent<CharacterController>();
         tp = GetComponent<Teleport>();
@@ -30,24 +36,29 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Slash)) //Right mouse button
+        if (Input.GetKeyDown(Slash) && CountSlash==1) //Right mouse button
         {
+            CountSlash = 0;
             controller.enabled = true;
             currentDashTime = 0;
             cm.velocity.y = 0;
+           
            
 
         }
         if (currentDashTime < maxDashTime)
         {
+            
             isSlashing = true;
             moveDirection = tp.direction * dashDistance;
             currentDashTime += dashStoppingSpeed;
+         
         }
         else
         {
             isSlashing = false;
             moveDirection = Vector3.zero;
+            DamageDone = false;
         }
         controller.Move(moveDirection * Time.deltaTime * dashSpeed);
 
@@ -75,8 +86,17 @@ public class Dash : MonoBehaviour
             Debug.Log("Inside");
             if (isSlashing)
             {
+                
                 Enemy = other.GetComponent<BaseEnemy>();
-                Enemy.Health--;
+                if (!DamageDone)
+                {
+                    CountSlash += 1;
+                    Damage += 1;
+                    Enemy.Health -= Damage;
+                    DamageDone = true;
+                    
+                }
+                
             }
         }
     }

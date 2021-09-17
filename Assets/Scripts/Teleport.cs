@@ -23,7 +23,7 @@ public class Teleport : MonoBehaviour
     public Vector3 endPosition;
     public Vector3 SpawnPoint;
     public Vector3 Min;
-    public Vector3 SlashDir;
+    public Vector3 SlashDir,Velocity;
     public CollisionScript CS;
     public float _dashSpeed = 0.001f;
     public float _dashTime = 0.01f;
@@ -47,14 +47,14 @@ public class Teleport : MonoBehaviour
         RaycastHit hit;
         endPosition = origin + (length * direction);
 
-        if (Physics.Raycast(ray, out hit, length,Wall))
+        if (Physics.Raycast(ray, out hit, length))
         {
             endPosition = new Vector3(hit.point.x, hit.point.y, 0);
             
         }
 
-       
 
+         Velocity = (endPosition - this.transform.position);
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
       //  Debug.Log(endPosition);
 
@@ -64,7 +64,11 @@ public class Teleport : MonoBehaviour
         {
             if (isSpawned && !UnableObject)
             {
-                tpAction();
+                
+                if (hit.transform.tag == "Wall"){
+                    tpAction();
+                }
+               
                 
                 
             }
@@ -181,19 +185,21 @@ public class Teleport : MonoBehaviour
 
     void InstantTeleport()
     {
-        cc.enabled = false;
+        //cc.enabled = false;
 
-        
-        transform.position = endPosition;
-        if (Nailed2)
-        {
-            cc.enabled = false;
-        }
-        else
-        {
-            cc.enabled = true;
-        }
 
+        cc.Move(Velocity);
+
+
+
+     /*    do
+        {
+            cm.velocity.y = transform.position.y;
+            cm.velocity.x = transform.position.x;
+
+        } while (Nailed2==true);
+       
+        */
     }
 
 
