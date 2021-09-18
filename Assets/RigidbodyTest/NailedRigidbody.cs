@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NailedRigidbody : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class NailedRigidbody : MonoBehaviour
     Vector3 HookDirection;
     public float limitTime;
     public LayerMask Ground;
+    public Image pointer;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +46,12 @@ public class NailedRigidbody : MonoBehaviour
             endPosition = new Vector3(hit.point.x, hit.point.y, 0);
 
         }
-       
-        if (Input.GetKeyDown(Hook))
-        {
+
+        
+
+
+            if (Input.GetKeyDown(Hook))
+            {
 
             if (hit.collider.CompareTag("Wall")) {
                 UnFreeze();
@@ -59,7 +64,7 @@ public class NailedRigidbody : MonoBehaviour
 
           
           
-        }
+              }
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
 
 
@@ -78,6 +83,15 @@ public class NailedRigidbody : MonoBehaviour
                 isHooking = false;
                 CancelHook();
             }
+        }
+
+        if (hit.collider.CompareTag("Wall"))
+        {
+            pointer.color = Color.green;
+        }
+        else
+        {
+            pointer.color = Color.red;
         }
     }
     void OnCollisionEnter(Collision collision)

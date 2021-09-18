@@ -9,30 +9,19 @@ public class BaseEnemy : MonoBehaviour
     public float Health;
     private bool dirRight = true;
     public float speed = 2.0f;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExampleCoroutine());
+        rb.GetComponent<Rigidbody>();
+        StartCoroutine(waiter());
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (dirRight)
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        else
-            transform.Translate(-Vector2.right * speed * Time.deltaTime);
-
-        if (transform.position.x >= LimitR)
-        {
-            dirRight = false;
-        }
-
-        if (transform.position.x <= LimitL)
-        {
-            dirRight = true;
-        }
+      
 
         if (Health <= 0)
         {
@@ -43,20 +32,24 @@ public class BaseEnemy : MonoBehaviour
     {
        Destroy(this.gameObject);
     }
-    IEnumerator ExampleCoroutine()
+    IEnumerator waiter()
     {
-        if (transform.position.x >= LimitR)
-        {
-            
-            dirRight = false;
-            yield return new WaitForSeconds(5);
-        }
 
-        if (transform.position.x <= LimitL)
-        {
-            dirRight = true;
-             yield return new WaitForSeconds(5);
-        }
+        //Rotate 90 deg
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        //Wait for 4 seconds
+        yield return new WaitForSecondsRealtime(4);
+
+        //Rotate 40 deg
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        //Wait for 2 seconds
+        yield return new WaitForSecondsRealtime(2);
+
+        //Rotate 20 deg
+       
+
     }
 
 }

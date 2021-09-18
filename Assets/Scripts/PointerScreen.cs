@@ -15,5 +15,6 @@ public class PointerScreen : MonoBehaviour
     void Update()
     {
         transform.position = NR.endPosition;
+        
     }
 }

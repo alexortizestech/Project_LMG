@@ -429,7 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   JumpForce: 7.5
-  Jump: 331
+  Jump: 330
   speed: 5
   NR: {fileID: 237137423}
 --- !u!54 &237137418
@@ -544,14 +544,15 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   endPosition: {x: 0, y: 0, z: 0}
   length: 50
-  Hook: 330
-  Cancel: 332
+  Hook: 331
+  Cancel: 333
   HookSpeed: 50
   count: 0
   limitTime: 5
   Ground:
     serializedVersion: 2
     m_Bits: 8
+  pointer: {fileID: 250676274}
 --- !u!114 &237137424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ MonoBehaviour:
   CountSlash: 0
   isSlashing: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  Attack: 333
+  Attack: 332
   dashDistance: 25
   dashStoppingSpeed: 0.1
   NR: {fileID: 237137423}
@@ -1401,7 +1402,7 @@ GameObject:
   - component: {fileID: 767450550}
   - component: {fileID: 767450549}
   - component: {fileID: 767450548}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Cube (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
