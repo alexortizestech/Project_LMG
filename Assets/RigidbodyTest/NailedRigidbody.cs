@@ -18,10 +18,11 @@ public class NailedRigidbody : MonoBehaviour
     public float count;
     Vector3 HookDirection;
     public float limitTime;
+    public LayerMask Ground;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Ground = LayerMask.NameToLayer("Ground");
         rb = GetComponent<Rigidbody>();
         
     }
@@ -47,13 +48,17 @@ public class NailedRigidbody : MonoBehaviour
         if (Input.GetKeyDown(Hook))
         {
 
+            if (hit.collider.CompareTag("Wall")) {
+                UnFreeze();
+                count = 0;
+                isHooking = true;
+                HookDirection = (hit.point - transform.position);
+                rb.velocity = HookDirection.normalized * HookSpeed;
+                rb.AddForce(HookDirection.normalized * HookSpeed);
+            }
 
-            UnFreeze();
-            count = 0;
-            isHooking = true;
-            HookDirection = (hit.point - transform.position);
-            rb.velocity = HookDirection.normalized * HookSpeed;
-            rb.AddForce(HookDirection.normalized * HookSpeed);
+          
+          
         }
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
 
@@ -79,8 +84,17 @@ public class NailedRigidbody : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("Hooked");
-            rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
+           
+            if (collision.gameObject.layer != Ground)
+            {
+               
+                Debug.Log("Hooked");
+                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            }
+            else if (collision.gameObject.layer==Ground)
+            {
+                CancelHook();
+            }
         }
         if (Input.GetKeyDown(Cancel))
         {
@@ -88,6 +102,8 @@ public class NailedRigidbody : MonoBehaviour
             CancelHook();
 
         }
+
+       
     }
 
     void UnFreeze()
