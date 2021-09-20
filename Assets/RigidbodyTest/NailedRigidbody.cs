@@ -88,15 +88,18 @@ public class NailedRigidbody : MonoBehaviour
                 CancelHook();
             }
         }
-
-        if (hit.transform.gameObject.layer == Ground || hit.transform.gameObject.layer == Wall)
+        if(direction.x!=0 || direction.y != 0)
         {
-            pointer.color = Color.green;
+            if (hit.transform.gameObject.layer == Ground || hit.transform.gameObject.layer == Wall)
+            {
+                pointer.color = Color.green;
+            }
+            else
+            {
+                pointer.color = Color.red;
+            }
         }
-        else
-        {
-            pointer.color = Color.red;
-        }
+      
     }
     void OnCollisionEnter(Collision collision)
     {

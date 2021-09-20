@@ -19,7 +19,7 @@ public class Slash : MonoBehaviour
     Rigidbody rb;
     public NailedRigidbody NR;
 
-    BaseEnemy Enemy;
+    EnemyBehaviour Enemy;
 
 
 
@@ -65,20 +65,24 @@ public class Slash : MonoBehaviour
 
 
         transform.Translate(moveDirection * dashSpeed * Time.deltaTime);
-
+        if (CountSlash >= 1)
+        {
+            CountSlash = 1;
+        }
     }
 
 
   
     private void OnTriggerEnter(Collider other)
     {
+        DamageDone = false;
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Inside");
             if (isSlashing)
             {
 
-                Enemy = other.GetComponent<BaseEnemy>();
+                Enemy = other.GetComponent<EnemyBehaviour>();
                 if (!DamageDone)
                 {
                     CountSlash += 1;
