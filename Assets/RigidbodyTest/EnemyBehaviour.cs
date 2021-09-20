@@ -27,7 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
        
         if (transform.position.x >= limitR)
         {
-          
+            rb.velocity = new Vector3(0,0,0);
             Direction = Vector3.left;
             
 
@@ -35,6 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (transform.position.x <= limitL)
         {
+            rb.velocity = new Vector3(0, 0, 0);
             Direction = Vector3.right;
            
         }

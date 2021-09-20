@@ -46,7 +46,7 @@ public class Slash : MonoBehaviour
             
             currentDashTime = 0;
 
-           AttackSlash();
+          // AttackSlash();
 
 
 
@@ -57,6 +57,7 @@ public class Slash : MonoBehaviour
             isSlashing = true;
             moveDirection = NR.direction * dashDistance;
             currentDashTime += dashStoppingSpeed;
+            AttackSlash();
 
         }
         else
