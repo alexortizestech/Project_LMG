@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NailedRigidbody : MonoBehaviour
 {
-    
+    public List<GameObject> Environment = new List<GameObject>();
     public bool isHooking;
     public Transform PlayerPos;
     public Vector2 origin, direction;
@@ -19,11 +19,12 @@ public class NailedRigidbody : MonoBehaviour
     public float count;
     Vector3 HookDirection;
     public float limitTime;
-    public LayerMask Ground;
+    public LayerMask Ground, Wall;
     public Image pointer;
     // Start is called before the first frame update
     void Start()
     {
+        Wall = LayerMask.NameToLayer("Wall");
         Ground = LayerMask.NameToLayer("Ground");
         rb = GetComponent<Rigidbody>();
         
@@ -52,7 +53,10 @@ public class NailedRigidbody : MonoBehaviour
 
             if (Input.GetKeyDown(Hook))
             {
-
+             foreach (GameObject cube in Environment)
+            {
+                cube.tag = "Wall";
+            }
             if (hit.collider.CompareTag("Wall")) {
                 UnFreeze();
                 count = 0;
@@ -85,7 +89,7 @@ public class NailedRigidbody : MonoBehaviour
             }
         }
 
-        if (hit.collider.CompareTag("Wall"))
+        if (hit.transform.gameObject.layer == Ground || hit.transform.gameObject.layer == Wall)
         {
             pointer.color = Color.green;
         }
@@ -127,7 +131,10 @@ public class NailedRigidbody : MonoBehaviour
 
     void CancelHook()
     {
-        
+        foreach (GameObject cube in Environment)
+        {
+            cube.tag = "Untagged";
+        }
         UnFreeze();
         isHooking = false;
     }

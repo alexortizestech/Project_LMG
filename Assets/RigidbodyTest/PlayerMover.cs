@@ -36,6 +36,9 @@ public class PlayerMover : MonoBehaviour
             }
 
         }
-        
+        Vector3 tmpPos = transform.position;
+        tmpPos.x = Mathf.Clamp(tmpPos.x, -12.5f, 26.5f);
+        tmpPos.y = Mathf.Clamp(tmpPos.y, -0.5f, 19.2f);
+        transform.position = tmpPos;
     }
 }

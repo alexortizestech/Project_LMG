@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18196715, g: 0.22765456, b: 0.30740988, a: 1}
+  m_IndirectSpecularColor: {r: 0.181967, g: 0.22765405, b: 0.30740905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 113005439}
   m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -404,10 +404,10 @@ GameObject:
   - component: {fileID: 237137421}
   - component: {fileID: 237137420}
   - component: {fileID: 237137419}
-  - component: {fileID: 237137424}
   - component: {fileID: 237137418}
   - component: {fileID: 237137423}
   - component: {fileID: 237137417}
+  - component: {fileID: 237137424}
   m_Layer: 0
   m_Name: Player
   m_TagString: Enemy
@@ -519,7 +519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237137416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.75, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 721393338}
@@ -538,6 +538,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5aa5a4c64aaff49bb5df56c604c9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Environment:
+  - {fileID: 1343487838}
+  - {fileID: 727326846}
+  - {fileID: 1656207981}
+  - {fileID: 113005437}
+  - {fileID: 767450546}
   isHooking: 0
   PlayerPos: {fileID: 237137422}
   origin: {x: 0, y: 0}
@@ -552,6 +558,9 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 8
+  Wall:
+    serializedVersion: 2
+    m_Bits: 0
   pointer: {fileID: 250676274}
 --- !u!114 &237137424
 MonoBehaviour:
@@ -1262,7 +1271,7 @@ GameObject:
   - component: {fileID: 727326848}
   m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1404,7 +1413,7 @@ GameObject:
   - component: {fileID: 767450548}
   m_Layer: 3
   m_Name: Cube (5)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1724,7 +1733,7 @@ GameObject:
   - component: {fileID: 1343487843}
   m_Layer: 3
   m_Name: Cube
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1836,7 +1845,7 @@ GameObject:
   - component: {fileID: 1656207983}
   m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

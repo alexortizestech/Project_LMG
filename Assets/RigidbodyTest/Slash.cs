@@ -12,10 +12,10 @@ public class Slash : MonoBehaviour
     public Vector3 moveDirection;
     public KeyCode Attack;
     public const float maxDashTime = 1.0f;
-    public float dashDistance = 100;
+    public float dashDistance=25f;
     public float dashStoppingSpeed = 0.1f;
     float currentDashTime = maxDashTime;
-    float dashSpeed = 10;
+    float dashSpeed = 7.5f;
     Rigidbody rb;
     public NailedRigidbody NR;
 
@@ -35,7 +35,7 @@ public class Slash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Attack) && CountSlash == 1) //Right mouse button
+        if (Input.GetKeyDown(Attack) && CountSlash == 1) 
         {
             isSlashing = true;
             CountSlash = 0;
