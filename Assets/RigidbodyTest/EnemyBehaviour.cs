@@ -50,6 +50,11 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
 
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
     void Die()
     {
        

@@ -10,7 +10,7 @@ public class PlayerMover : MonoBehaviour
     Rigidbody rb;
     public float speed;
     public NailedRigidbody NR;
-
+    public float mH;
     void Start()
     {
        
@@ -25,7 +25,7 @@ public class PlayerMover : MonoBehaviour
     {
         if (!NR.isHooking)
         {
-            float mH = Input.GetAxis("Horizontal");
+             mH = Input.GetAxis("Horizontal");
 
             rb.velocity = new Vector3(mH * speed, rb.velocity.y, 0);
 
@@ -36,6 +36,16 @@ public class PlayerMover : MonoBehaviour
             }
 
         }
+      /*  if (mH <=0)
+        {
+            //mirar a la izquierda
+            transform.Rotate(new Vector3(0, -180, 0),Space.Self);
+        }else if (mH > 0)
+        {
+            //mirar a la derecha;
+            transform.Rotate(new Vector3(0, 0, 0),Space.Self);
+        }
+      */
         Vector3 tmpPos = transform.position;
         tmpPos.x = Mathf.Clamp(tmpPos.x, -12.5f, 26.5f);
         tmpPos.y = Mathf.Clamp(tmpPos.y, -0.5f, 19.2f);
