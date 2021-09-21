@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
+    public GameManager gm;
     public bool isGrounded;
     public float JumpForce;
     public KeyCode Jump;
@@ -62,6 +63,7 @@ public class PlayerMover : MonoBehaviour
 
     void Die()
     {
+        gm.GameOver();
         Destroy(this.gameObject);
     }
 }

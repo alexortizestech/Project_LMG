@@ -21,7 +21,7 @@ public class Slash : MonoBehaviour
     Rigidbody rb;
     public NailedRigidbody NR;
     public float Range;
-
+    public GameObject SpriteSlash;
     EnemyBehaviour Enemy;
 
 
@@ -39,11 +39,13 @@ public class Slash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(Attack) && CountSlash == 1) 
         {
             isSlashing = true;
             CountSlash = 0;
-            
+            SpriteSlash.SetActive(false);
             currentDashTime = 0;
 
           // AttackSlash();
@@ -74,8 +76,12 @@ public class Slash : MonoBehaviour
         if (CountSlash >= 1)
         {
             CountSlash = 1;
+            SpriteSlash.SetActive(true);
         }
         OnDrawGizmos();
+
+       
+        
     }
 
     
