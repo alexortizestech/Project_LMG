@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisionRange : MonoBehaviour
 {
-
+    
     public float radius;
     [Range(0, 360)]
     public float angle;
@@ -24,6 +24,14 @@ public class VisionRange : MonoBehaviour
         StartCoroutine(FOVRoutine());
     }
 
+    private void Update()
+    {
+        if (canSeePlayer)
+        {
+
+            Behaviour.Attack();
+        }
+    }
     private IEnumerator FOVRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
@@ -51,7 +59,6 @@ public class VisionRange : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
-                    Behaviour.Attack();
 
                 }
                     
@@ -64,6 +71,10 @@ public class VisionRange : MonoBehaviour
         else if (canSeePlayer)
             canSeePlayer = false;
     }
+
+
+
+
 }
 
 

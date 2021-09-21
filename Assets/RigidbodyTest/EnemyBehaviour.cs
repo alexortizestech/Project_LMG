@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public Transform player,SpawnPoint;
     Rigidbody rb;
     public float scuttleSpeed;
     public float turnSpeed;
     public Enemy enemy;
     public Vector3 Direction;
     public float Health;
-    public float limitL, limitR;
+    public float limitL, limitR,nextFire,fireRate;
+    public GameObject Bullet;
     // Start is called before the first frame update
     void Start()
     {
+        nextFire = 0;
+        fireRate = 1.5f;
         Direction = Vector3.right;
         rb = GetComponent<Rigidbody>();
         Health = enemy.Health;
@@ -66,9 +70,18 @@ public class EnemyBehaviour : MonoBehaviour
 
    public void Attack()
     {
+        //transform.LookAt(player);
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+
+           var Shoot= Instantiate(Bullet, transform.position, transform.rotation);
+
+            
+        }
         Debug.Log("Enemy Attack");
 
-    }
+   }
 
  
 }

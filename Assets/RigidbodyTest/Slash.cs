@@ -29,7 +29,7 @@ public class Slash : MonoBehaviour
     private void Awake()
     {
         Range = 5;
-        attackRange = new Vector3(4, 4, 0);
+        attackRange = new Vector3(1, 2, 0);
         CountSlash = 1;
         Damage = 1;
         rb = GetComponent<Rigidbody>();

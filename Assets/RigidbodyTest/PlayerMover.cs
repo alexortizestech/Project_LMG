@@ -11,9 +11,10 @@ public class PlayerMover : MonoBehaviour
     public float speed;
     public NailedRigidbody NR;
     public float mH;
+    public float Health;
     void Start()
     {
-       
+        Health = 1;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -50,5 +51,17 @@ public class PlayerMover : MonoBehaviour
         tmpPos.x = Mathf.Clamp(tmpPos.x, -12.5f, 26.5f);
         tmpPos.y = Mathf.Clamp(tmpPos.y, -0.5f, 19.2f);
         transform.position = tmpPos;
+
+        if (Health <= 0)
+        {
+            Die();
+        }
+
+    }
+
+
+    void Die()
+    {
+        Destroy(this.gameObject);
     }
 }
