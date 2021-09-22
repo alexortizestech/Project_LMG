@@ -70,18 +70,18 @@ public class NailedRigidbody : MonoBehaviour
 
                 
                 HookDirection = (hit.point - transform.position);
-                if (Pressed == 0)
-                {
-                   // AlternativeHook();
-                    
-                }
                 
-                HookAction();
+                
+               // HookAction();
                 
             }
 
-               
-          
+            if (Pressed == 0)
+            {
+                AlternativeHook();
+
+            }
+
         }
 
 
@@ -89,7 +89,14 @@ public class NailedRigidbody : MonoBehaviour
         {
             destiny = clone.transform.position;
             if (Input.GetKeyDown(Teleport))
+            {
+                foreach (GameObject cube in Environment)
+                {
+                    cube.tag = "Wall";
+                }
                 HyperDash();
+            }
+               
         }
 
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
@@ -163,6 +170,8 @@ public class NailedRigidbody : MonoBehaviour
         }
         UnFreeze();
         isHooking = false;
+        Destroy(clone);
+        Pressed = 0;
     }
 
 
@@ -180,8 +189,8 @@ public class NailedRigidbody : MonoBehaviour
     {
         Pressed += 1;
         UnFreeze();
-        count = 0;
-        isHooking = true;
+        
+        
         clone= Instantiate(Sword, transform.position, transform.rotation);
         
         
@@ -189,6 +198,14 @@ public class NailedRigidbody : MonoBehaviour
 
     void HyperDash()
     {
-        rb.AddForce(destiny.normalized * HookSpeed);
+        UnFreeze();
+        isHooking = true;
+        count = 0;
+        //rb.velocity = destiny.normalized * HookSpeed;
+        transform.position = clone.transform.position;
+        //  rb.AddForce(destiny.normalized * HookSpeed);
+        Destroy(clone);
+        Pressed = 0;
+        // transform.position = clone.transform.position;
     }
 }

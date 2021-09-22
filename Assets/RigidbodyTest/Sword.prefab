@@ -110,3 +110,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nr: {fileID: 0}
   speed: 20
+  lastPos: {x: 0, y: 0, z: 0}
+  Wall:
+    serializedVersion: 2
+    m_Bits: 0
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
