@@ -23,23 +23,36 @@ public class Slash : MonoBehaviour
     public float Range;
     public GameObject SpriteSlash;
     EnemyBehaviour Enemy;
+    public bool Combo;
+    public float ComboTime;
+    public int limit;
+    public PlayerMover Mover;
 
 
 
     private void Awake()
     {
+        dashStoppingSpeed = 0.1f;
+        Combo = false;
+        ComboTime = 5;
         Range = 5;
         attackRange = new Vector3(1, 2, 0);
         CountSlash = 1;
         Damage = 1;
         rb = GetComponent<Rigidbody>();
         NR = GetComponent<NailedRigidbody>();
+        Mover = GetComponent<PlayerMover>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        ComboTime += 1 *Time.deltaTime;
+        if (ComboTime >= limit)
+        {
+            Damage = 1;
+            Combo = false;
+        }
 
         if (Input.GetKeyDown(Attack) && CountSlash == 1) 
         {
@@ -48,7 +61,8 @@ public class Slash : MonoBehaviour
             SpriteSlash.SetActive(false);
             currentDashTime = 0;
 
-          // AttackSlash();
+            // AttackSlash();
+            NR.CancelHook();
 
 
 
@@ -60,14 +74,16 @@ public class Slash : MonoBehaviour
             moveDirection = NR.direction * dashDistance;
             currentDashTime += dashStoppingSpeed;
             AttackSlash();
+            
 
         }
         else
         {
             
             moveDirection = Vector3.zero;
-            DamageDone = false;
+            
             isSlashing = false;
+            DamageDone = false;
 
         }
 
@@ -78,9 +94,8 @@ public class Slash : MonoBehaviour
             CountSlash = 1;
             SpriteSlash.SetActive(true);
         }
-        OnDrawGizmos();
+       // OnDrawGizmos();
 
-       
         
     }
 
@@ -117,10 +132,15 @@ public class Slash : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
+           
+            
             enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
-            CountSlash = 1;
-            Damage += 1;
+
+           
+
         }
+
+        
     }
    void OnDrawGizmos()
     {
@@ -138,5 +158,43 @@ public class Slash : MonoBehaviour
         }
             
     }*/
+
+
+
+    public void Killed()
+    {
+        if (Combo)
+        {
+            Damage += 1;
+        }
+        else if(!Combo){
+            Combo = true;
+        }
+
+        CountSlash = 1;
+        ComboTime = 0;
+       
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+         other.GetComponent<EnemyBehaviour>().myFunctionDone = false;
+        }
+    }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if(other.GetComponent<VisionRange>().canSeePlayer == true)
+            {
+                Mover.Health--;
+            }
+        }
+    }
 }
 

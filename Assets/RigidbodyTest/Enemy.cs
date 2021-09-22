@@ -10,6 +10,6 @@ public class Enemy : ScriptableObject
     public string Name;
     public float Health;
     public string Damage;
-
+    public string Attack;
     
 }

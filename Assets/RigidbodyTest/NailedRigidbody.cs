@@ -21,9 +21,15 @@ public class NailedRigidbody : MonoBehaviour
     public float limitTime;
     public LayerMask Ground, Wall;
     public Image pointer;
+    public GameObject Sword;
+    public int Pressed;
+    public Vector3 destiny;
+    GameObject clone;
+    public KeyCode Teleport;
     // Start is called before the first frame update
     void Start()
     {
+        Pressed = 0;
         Wall = LayerMask.NameToLayer("Wall");
         Ground = LayerMask.NameToLayer("Ground");
         rb = GetComponent<Rigidbody>();
@@ -49,26 +55,43 @@ public class NailedRigidbody : MonoBehaviour
         }
 
         
+       
 
+        if (Input.GetKeyDown(Hook))
+        {
+                 foreach (GameObject cube in Environment)
+                 {
+                    cube.tag = "Wall";
+                 }
 
-            if (Input.GetKeyDown(Hook))
+           
+            if (hit.collider.CompareTag("Wall")) 
             {
-             foreach (GameObject cube in Environment)
-            {
-                cube.tag = "Wall";
-            }
-            if (hit.collider.CompareTag("Wall")) {
-                UnFreeze();
-                count = 0;
-                isHooking = true;
+
+                
                 HookDirection = (hit.point - transform.position);
-                rb.velocity = HookDirection.normalized * HookSpeed;
-                rb.AddForce(HookDirection.normalized * HookSpeed);
+                if (Pressed == 0)
+                {
+                   // AlternativeHook();
+                    
+                }
+                
+                HookAction();
+                
             }
 
+               
           
-          
-              }
+        }
+
+
+        if (Pressed == 1)
+        {
+            destiny = clone.transform.position;
+            if (Input.GetKeyDown(Teleport))
+                HyperDash();
+        }
+
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
 
 
@@ -132,7 +155,7 @@ public class NailedRigidbody : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
-    void CancelHook()
+   public void CancelHook()
     {
         foreach (GameObject cube in Environment)
         {
@@ -140,5 +163,32 @@ public class NailedRigidbody : MonoBehaviour
         }
         UnFreeze();
         isHooking = false;
+    }
+
+
+    void HookAction()
+    {
+        UnFreeze();
+        count = 0;
+        isHooking = true;
+        rb.velocity = HookDirection.normalized * HookSpeed;
+        rb.AddForce(HookDirection.normalized * HookSpeed);
+    }
+
+
+    void AlternativeHook()
+    {
+        Pressed += 1;
+        UnFreeze();
+        count = 0;
+        isHooking = true;
+        clone= Instantiate(Sword, transform.position, transform.rotation);
+        
+        
+    }
+
+    void HyperDash()
+    {
+        rb.AddForce(destiny.normalized * HookSpeed);
     }
 }

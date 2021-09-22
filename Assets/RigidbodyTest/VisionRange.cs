@@ -29,7 +29,7 @@ public class VisionRange : MonoBehaviour
         if (canSeePlayer)
         {
 
-            Behaviour.Attack();
+            //Behaviour.SlashingAttack();
         }
     }
     private IEnumerator FOVRoutine()

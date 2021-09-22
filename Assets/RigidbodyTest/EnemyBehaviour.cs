@@ -13,9 +13,18 @@ public class EnemyBehaviour : MonoBehaviour
     public float Health;
     public float limitL, limitR,nextFire,fireRate;
     public GameObject Bullet;
+    public bool myFunctionDone;
+    public GameObject Player;
+    public string attack;
+    public float dashSpeed;
+    public VisionRange fov;
+
     // Start is called before the first frame update
     void Start()
     {
+        dashSpeed = 100;
+        fov = GetComponent<VisionRange>();
+        attack = enemy.Attack;
         nextFire = 0;
         fireRate = 1.5f;
         Direction = Vector3.right;
@@ -28,22 +37,39 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if (transform.position.x >= limitR)
-        {
-            rb.velocity = new Vector3(0,0,0);
-            Direction = Vector3.left;
-            
 
+        if (!fov.canSeePlayer)
+        {
+            if (transform.position.x >= limitR)
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                Direction = Vector3.left;
+
+
+
+            }
+            else if (transform.position.x <= limitL)
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                Direction = Vector3.right;
+
+            }
+            rb.AddForce(Direction * scuttleSpeed * Time.deltaTime);
+        }
+
+        if (fov.canSeePlayer)
+        {
+           if(attack == "Shoot")
+            {
+                ShootAtack();
+            }
+
+            if (attack == "Dashing")
+            {
+                SlashingAttack();
+            }
             
         }
-        else if (transform.position.x <= limitL)
-        {
-            rb.velocity = new Vector3(0, 0, 0);
-            Direction = Vector3.right;
-           
-        }
-        rb.AddForce(Direction * scuttleSpeed *Time.deltaTime);
 
         Vector3 tmpPos = transform.position;
         tmpPos.x = Mathf.Clamp(tmpPos.x, limitL, limitR);
@@ -58,17 +84,23 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Health -= damage;
-    }
-    void Die()
-    {
+        if (!myFunctionDone)
+        {
+            Health -= damage;
+            myFunctionDone = true;
+        }
        
-        
+    }
+    public void Die()
+    {
+
+
+            Player.GetComponent<Slash>().Killed();
             Destroy(this.gameObject);
         
     }
 
-   public void Attack()
+   public void ShootAtack()
     {
         //transform.LookAt(player);
         if (Time.time > nextFire)
@@ -76,6 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
             nextFire = Time.time + fireRate;
 
            var Shoot= Instantiate(Bullet, transform.position, transform.rotation);
+            
 
             
         }
@@ -83,5 +116,14 @@ public class EnemyBehaviour : MonoBehaviour
 
    }
 
- 
+
+   
+    public void SlashingAttack()
+    {
+        var destiny = -player.position - transform.position;
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.AddForce(destiny* dashSpeed);
+    }
+
+
 }

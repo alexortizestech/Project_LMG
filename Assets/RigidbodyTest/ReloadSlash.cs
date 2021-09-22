@@ -39,10 +39,14 @@ public class ReloadSlash : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")&&!isOff)
         {
-            other.GetComponent<Slash>().CountSlash = 1;
-           
-            isOff = true;
-            Font.SetActive(false);
+            if (other.GetComponent<Slash>().CountSlash != 1)
+            {
+                other.GetComponent<Slash>().CountSlash = 1;
+
+                isOff = true;
+                Font.SetActive(false);
+            }
+         
         }
     }
 }
