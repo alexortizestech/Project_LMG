@@ -11,6 +11,7 @@ public class SwordBehaviour : MonoBehaviour
     public LayerMask Wall;
     public LayerMask Ground;
     Rigidbody rb;
+    bool Colliding;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +26,22 @@ public class SwordBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position +=direction * speed * Time.deltaTime;
-        lastPos = transform.position;
+        if (!Colliding)
+        {
+            transform.position +=direction * speed * Time.deltaTime;
+        }
+
+       
+       
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == Wall || other.gameObject.layer == Ground)
         {
-            transform.position = lastPos;
+            //transform.position = transform.position;
+            Colliding = true;
+;            Debug.Log("collision");
         }
     }
 
@@ -41,6 +49,7 @@ public class SwordBehaviour : MonoBehaviour
     {
         if (collision.gameObject.layer == Wall || collision.gameObject.layer == Ground)
         {
+            Debug.Log("collision");
            // rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }

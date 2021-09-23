@@ -32,6 +32,8 @@ public class Slash : MonoBehaviour
 
     private void Awake()
     {
+
+        dashDistance = 25f;
         dashStoppingSpeed = 0.1f;
         Combo = false;
         ComboTime = 5;

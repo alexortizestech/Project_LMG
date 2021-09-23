@@ -5104,7 +5104,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.46, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &113005441
 MeshRenderer:
@@ -5166,7 +5166,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+  m_Size: {x: 1.0000002, y: 0.64, z: 1.0000002}
   m_Center: {x: 0.0000000037252903, y: 0, z: -0.000000029802322}
 --- !u!1 &132430608
 GameObject:
@@ -5543,6 +5543,7 @@ MonoBehaviour:
   Pressed: 0
   destiny: {x: 0, y: 0, z: 0}
   Teleport: 335
+  countObject: 0
 --- !u!114 &237137424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11056,7 +11057,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.34, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &727326850
 MeshRenderer:
@@ -11118,7 +11119,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
+  m_Size: {x: 1.0000002, y: 0.73, z: 1.0000001}
   m_Center: {x: 0.0000000037252903, y: 0.0000019073486, z: 0.000000029802322}
 --- !u!1 &767450546
 GameObject:

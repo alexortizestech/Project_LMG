@@ -21,11 +21,12 @@ public class NailedRigidbody : MonoBehaviour
     public float limitTime;
     public LayerMask Ground, Wall;
     public Image pointer;
-    public GameObject Sword;
+    public GameObject Sword,SwordReturn;
     public int Pressed;
     public Vector3 destiny;
-    GameObject clone;
+    GameObject clone,returner;
     public KeyCode Teleport;
+    public float countObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +65,7 @@ public class NailedRigidbody : MonoBehaviour
                     cube.tag = "Wall";
                  }
 
-           
+           if(hit.point.x>Vector3.zero.x|| hit.point.y>Vector3.zero.y)
             if (hit.collider.CompareTag("Wall")) 
             {
 
@@ -78,7 +79,12 @@ public class NailedRigidbody : MonoBehaviour
 
             if (Pressed == 0)
             {
-                AlternativeHook();
+                if(direction.x!=0 || direction.y != 0)
+                {
+                    AlternativeHook();
+                }
+                
+                
 
             }
 
@@ -87,6 +93,7 @@ public class NailedRigidbody : MonoBehaviour
 
         if (Pressed == 1)
         {
+            countObject += 1 * Time.deltaTime;
             destiny = clone.transform.position;
             if (Input.GetKeyDown(Teleport))
             {
@@ -111,12 +118,18 @@ public class NailedRigidbody : MonoBehaviour
 
         if (isHooking)
         {
+            
             count+=1*Time.deltaTime;
             if (count >= limitTime)
             {
                 isHooking = false;
                 CancelHook();
             }
+        }
+
+        if (countObject >= limitTime)
+        {
+            CancelHook();
         }
         if(direction.x!=0 || direction.y != 0)
         {
@@ -170,6 +183,7 @@ public class NailedRigidbody : MonoBehaviour
         }
         UnFreeze();
         isHooking = false;
+        returner = Instantiate(returner, clone.transform.position, clone.transform.rotation);
         Destroy(clone);
         Pressed = 0;
     }
@@ -188,10 +202,11 @@ public class NailedRigidbody : MonoBehaviour
     void AlternativeHook()
     {
         Pressed += 1;
-        UnFreeze();
-        
-        
+       // UnFreeze();
+        count = 0;
+        countObject = 0;
         clone= Instantiate(Sword, transform.position, transform.rotation);
+        
         
         
     }
@@ -201,6 +216,7 @@ public class NailedRigidbody : MonoBehaviour
         UnFreeze();
         isHooking = true;
         count = 0;
+        countObject = 0;
         //rb.velocity = destiny.normalized * HookSpeed;
         transform.position = clone.transform.position;
         //  rb.AddForce(destiny.normalized * HookSpeed);
