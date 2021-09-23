@@ -5540,6 +5540,7 @@ MonoBehaviour:
     m_Bits: 0
   pointer: {fileID: 250676274}
   Sword: {fileID: 3055457737790718538, guid: a2e5b452c6556684583ab3862a53df59, type: 3}
+  SwordReturn: {fileID: 2227946930260864579, guid: 3234e28acbde71f44bdfae354276746c, type: 3}
   Pressed: 0
   destiny: {x: 0, y: 0, z: 0}
   Teleport: 335

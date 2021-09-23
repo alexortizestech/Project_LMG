@@ -183,7 +183,7 @@ public class NailedRigidbody : MonoBehaviour
         }
         UnFreeze();
         isHooking = false;
-        returner = Instantiate(returner, clone.transform.position, clone.transform.rotation);
+        returner = Instantiate(SwordReturn, clone.transform.position, clone.transform.rotation);
         Destroy(clone);
         Pressed = 0;
     }
