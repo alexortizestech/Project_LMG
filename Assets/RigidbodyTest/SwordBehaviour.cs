@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordBehaviour : MonoBehaviour
 {
+    public float back;
     public NailedRigidbody nr;
     public float speed;
     Vector3 direction;
@@ -20,7 +21,7 @@ public class SwordBehaviour : MonoBehaviour
         Ground = LayerMask.NameToLayer("Ground");
         nr = GameObject.FindGameObjectWithTag("Player").GetComponent<NailedRigidbody>();
         direction = new Vector3(nr.direction.x, nr.direction.y, 0);
-        speed = 20;
+        speed = 40;
     }
 
     // Update is called once per frame
@@ -31,8 +32,8 @@ public class SwordBehaviour : MonoBehaviour
             transform.position +=direction * speed * Time.deltaTime;
         }
 
-       
-       
+        back += 1 * Time.deltaTime;
+;       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,5 +53,15 @@ public class SwordBehaviour : MonoBehaviour
             Debug.Log("collision");
            // rb.constraints = RigidbodyConstraints.FreezeAll;
         }
+    }
+
+    void OnBecameInvisible()
+    {
+        back = 0;
+        if (back >= 1)
+        {
+            nr.CancelHook();
+        }
+       
     }
 }

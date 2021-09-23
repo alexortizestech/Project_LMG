@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class NailedRigidbody : MonoBehaviour
 {
+    public Vector3 limitX,limitY;
     public List<GameObject> Environment = new List<GameObject>();
     public bool isHooking;
     public Transform PlayerPos;
@@ -40,6 +41,8 @@ public class NailedRigidbody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+       // limitX=Screen.width.
         origin = new Vector2(PlayerPos.transform.position.x, PlayerPos.transform.position.y);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
@@ -131,7 +134,7 @@ public class NailedRigidbody : MonoBehaviour
         {
             CancelHook();
         }
-        if(direction.x!=0 || direction.y != 0)
+        if(hit.point.x!=0|| hit.point.y != 0)
         {
             if (hit.transform.gameObject.layer == Ground || hit.transform.gameObject.layer == Wall)
             {
@@ -183,7 +186,11 @@ public class NailedRigidbody : MonoBehaviour
         }
         UnFreeze();
         isHooking = false;
-        returner = Instantiate(SwordReturn, clone.transform.position, clone.transform.rotation);
+        if (clone)
+        {
+            returner = Instantiate(SwordReturn, clone.transform.position, clone.transform.rotation);
+        }
+   
         Destroy(clone);
         Pressed = 0;
     }
@@ -224,4 +231,6 @@ public class NailedRigidbody : MonoBehaviour
         Pressed = 0;
         // transform.position = clone.transform.position;
     }
+
+    
 }
