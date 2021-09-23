@@ -45,7 +45,7 @@ public class NailedRigidbody : MonoBehaviour
        // limitX=Screen.width.
         origin = new Vector2(PlayerPos.transform.position.x, PlayerPos.transform.position.y);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
+        
         
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
