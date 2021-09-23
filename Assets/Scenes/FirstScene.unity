@@ -11922,6 +11922,8 @@ MonoBehaviour:
   count: 0
   limit: 0
   nr: {fileID: 237137423}
+  Slowing: 0
+  pressed: 0
 --- !u!1 &699979128
 GameObject:
   m_ObjectHideFlags: 0

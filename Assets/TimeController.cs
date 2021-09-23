@@ -20,7 +20,7 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        count += 1 * Time.deltaTime;
         Slowing = Input.GetAxis("BulletTime");
         if (Slowing==1)
         {
@@ -30,8 +30,11 @@ public class TimeController : MonoBehaviour
 
         if (pressed)
         {
-            SlowTime();
-            
+            count = 0;
+            count += 1 * Time.deltaTime;
+            Time.timeScale = 0.25f;
+            nr.direction *= 4;
+
         }
 
         if (count >= limit)
@@ -39,19 +42,12 @@ public class TimeController : MonoBehaviour
             ReturnTime();
         }
 
-        count += 1 * Time.deltaTime;
+       
         Debug.Log(Time.timeScale);
     }
 
 
-    void SlowTime()
-    {
-
-        count = 0;
-        Time.timeScale = 0.25f;
-        nr.direction *= 4;
-    }
-
+   
     void ReturnTime()
     {
         pressed = false;
