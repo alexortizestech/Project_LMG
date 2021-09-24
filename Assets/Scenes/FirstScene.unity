@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.181967, g: 0.22765405, b: 0.30740905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18196715, g: 0.22765456, b: 0.30740988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -99,7 +99,8 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: eccbbedbabdee1f419d9abe731c590c2,
     type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 313aad6a39aa90640868fba1bad27e34,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5721,7 +5722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -7192,7 +7193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -7792,7 +7793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -13167,7 +13168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -13444,7 +13445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -13721,7 +13722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -14062,7 +14063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -1792332355011580756, guid: 8b1f27026d166ff40b5e45bd0b51d195, type: 3}
@@ -14342,7 +14343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -15037,7 +15038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 3993185032278220044, guid: d9f1ea8942233ff4189800b3f4bcd438, type: 3}
@@ -15125,7 +15126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -15844,7 +15845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -16427,7 +16428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -16935,7 +16936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -17408,7 +17409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -17685,7 +17686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -17997,7 +17998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -18274,7 +18275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -18551,7 +18552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -19217,7 +19218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -19699,7 +19700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -1792332355011580756, guid: 8b1f27026d166ff40b5e45bd0b51d195, type: 3}
@@ -20150,7 +20151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -21242,7 +21243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -21614,7 +21615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -21891,7 +21892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -22670,7 +22671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -22947,7 +22948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -23224,7 +23225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 2495703381458242797, guid: c3948142f5e6d3d46a593a9da1d37bf8, type: 3}
@@ -23686,7 +23687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -23963,7 +23964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -24435,7 +24436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -7631138455938654019, guid: 041ff49cb234138469396473fd639a7d, type: 3}
@@ -25119,7 +25120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -1792332355011580756, guid: 8b1f27026d166ff40b5e45bd0b51d195, type: 3}
@@ -25414,7 +25415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 10
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -738419132484785097, guid: 556e79f9c190f1241be81e7a1bedc2bf, type: 3}
