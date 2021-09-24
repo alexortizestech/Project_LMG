@@ -4,21 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
   - Enemy
-  - Nailer
+  - Wall
   - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
   - Wall
-  - Enemy
+  - Ground
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
