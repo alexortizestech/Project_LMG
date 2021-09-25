@@ -6517,7 +6517,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   Attack: 332
   dashDistance: 7.5
-  dashStoppingSpeed: 0.1
+  dashStoppingSpeed: 0.05
   NR: {fileID: 237137423}
   Range: 0
   SpriteSlash: {fileID: 1561369547}
@@ -14585,7 +14585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &699979129
 Transform:
   m_ObjectHideFlags: 0

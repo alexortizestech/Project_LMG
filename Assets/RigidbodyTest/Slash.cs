@@ -34,7 +34,7 @@ public class Slash : MonoBehaviour
     {
 
         dashDistance = 25f;
-        dashStoppingSpeed = 0.1f;
+        dashStoppingSpeed = 0.05f;
         Combo = false;
         ComboTime = 5;
         Range = 5;
