@@ -15,8 +15,7 @@ public class Slash : MonoBehaviour
     public KeyCode Attack;
     public const float maxDashTime = 1.0f;
     public float dashDistance=25f;
-    [SerializeField] public float dashStoppingSpeed = 0.1f;
-    public bool myfunctionDone;
+    public float dashStoppingSpeed = 0.1f;
     float currentDashTime = maxDashTime;
     float dashSpeed = 7.5f;
     Rigidbody rb;
@@ -35,7 +34,7 @@ public class Slash : MonoBehaviour
     {
 
         dashDistance = 25f;
-       // dashStoppingSpeed = 0.1f;
+        dashStoppingSpeed = 0.1f;
         Combo = false;
         ComboTime = 5;
         Range = 5;
@@ -129,22 +128,17 @@ public class Slash : MonoBehaviour
  */
    void AttackSlash()
     {
-        Time.timeScale = 1;
        // Collider[] hitEnemies = Physics.OverlapSphere(transform.position, Range,  EnemyLayer);
         Collider[] hitEnemies = Physics.OverlapBox(transform.position, attackRange, Quaternion.Euler(NR.direction.x,NR.direction.y,0), EnemyLayer);
 
 
         foreach (Collider enemy in hitEnemies)
         {
+           
+            
+            enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
 
-            if (!myfunctionDone)
-            {
-                enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
-                myfunctionDone = true;
-            }
-
-         
-
+           
 
         }
 
@@ -190,7 +184,6 @@ public class Slash : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
          other.GetComponent<EnemyBehaviour>().myFunctionDone = false;
-            myfunctionDone = false;
         }
     }
 

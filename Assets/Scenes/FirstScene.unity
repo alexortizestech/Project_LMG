@@ -6517,8 +6517,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   Attack: 332
   dashDistance: 7.5
-  dashStoppingSpeed: 0.05
-  myfunctionDone: 0
+  dashStoppingSpeed: 0.1
   NR: {fileID: 237137423}
   Range: 0
   SpriteSlash: {fileID: 1561369547}
@@ -14586,7 +14585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &699979129
 Transform:
   m_ObjectHideFlags: 0
@@ -25002,7 +25001,7 @@ BoxCollider:
   m_GameObject: {fileID: 2044256236}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -25063,7 +25062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044256236}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.2, y: 0.48, z: -0.55}
+  m_LocalPosition: {x: 0.33, y: 12, z: -0.55}
   m_LocalScale: {x: 1.579683, y: 3.26429, z: 1.7952074}
   m_Children:
   - {fileID: 1761537066}
