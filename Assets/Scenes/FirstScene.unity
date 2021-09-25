@@ -6517,7 +6517,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   Attack: 332
   dashDistance: 7.5
-  dashStoppingSpeed: 0.05
+  dashStoppingSpeed: 0.1
   NR: {fileID: 237137423}
   Range: 0
   SpriteSlash: {fileID: 1561369547}
