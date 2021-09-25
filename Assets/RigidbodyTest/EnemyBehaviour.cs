@@ -78,6 +78,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Die();
         }
+
+       
     }
 
 
@@ -86,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!myFunctionDone)
         {
-            Health -= damage;
+            Health = Mathf.Max(Health - damage, 0);
             myFunctionDone = true;
         }
        
@@ -97,6 +99,7 @@ public class EnemyBehaviour : MonoBehaviour
 
             Player.GetComponent<Slash>().Killed();
             Destroy(this.gameObject);
+           // return true;
         
     }
 

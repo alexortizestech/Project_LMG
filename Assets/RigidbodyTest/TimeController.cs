@@ -24,15 +24,15 @@ public class TimeController : MonoBehaviour
         Slowing = Input.GetAxis("BulletTime");
         if (Slowing==1)
         {
-            pressed = true;
+            Time.timeScale = 0.25f;
         }
 
 
         if (pressed)
         {
             count = 0;
-            count += 1 * Time.deltaTime;
-            Time.timeScale = 0.25f;
+            count += 4 * Time.deltaTime;
+            
             nr.direction *= 4;
 
         }
@@ -50,7 +50,7 @@ public class TimeController : MonoBehaviour
    
     void ReturnTime()
     {
-        pressed = false;
+        
         Time.timeScale = 1;
         count = 0;
     }

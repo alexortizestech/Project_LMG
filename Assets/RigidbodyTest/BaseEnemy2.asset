@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Walk: 5
   Name: BaseEnemy
-  Health: 2
+  Health: 3
   Damage: 1
   Attack: Dashing

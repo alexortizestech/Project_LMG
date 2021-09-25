@@ -180,6 +180,7 @@ public class NailedRigidbody : MonoBehaviour
 
    public void CancelHook()
     {
+        Time.timeScale = 1;
         foreach (GameObject cube in Environment)
         {
             cube.tag = "Untagged";
@@ -220,6 +221,7 @@ public class NailedRigidbody : MonoBehaviour
 
     void HyperDash()
     {
+        Time.timeScale = 1;
         UnFreeze();
         isHooking = true;
         count = 0;
