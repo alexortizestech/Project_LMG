@@ -88,7 +88,7 @@ public class Movement : MonoBehaviour
         {
             if(side != coll.wallSide)
                 anim.Flip(side*-1);
-           wallGrab = true;
+           //wallGrab = true;
             wallSlide = false;
 
           
@@ -131,7 +131,7 @@ public class Movement : MonoBehaviour
             if (x != 0 && !wallGrab)
             {
                 wallSlide = true;
-                WallSlide();
+               // WallSlide();
             }
         }
 
