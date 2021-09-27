@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Slash : MonoBehaviour
-{   public Transform attackpoint;
+    
+{
+    public bool Called;
+    public Transform attackpoint;
     public Vector3 attackRange;
     public LayerMask EnemyLayer;
     public bool DamageDone;
@@ -32,7 +35,7 @@ public class Slash : MonoBehaviour
 
     private void Awake()
     {
-
+        Called = false;
         dashDistance = 25f;
         dashStoppingSpeed = 0.1f;
         Combo = false;
@@ -64,24 +67,24 @@ public class Slash : MonoBehaviour
             currentDashTime = 0;
 
             // AttackSlash();
-            NR.CancelHook();
+           // NR.CancelHook();
 
 
 
         }
         if (currentDashTime < maxDashTime)
         {
-
+            Called = false;
             isSlashing = true;
             moveDirection = NR.direction * dashDistance;
             currentDashTime += dashStoppingSpeed;
             AttackSlash();
-            
+           
 
         }
         else
         {
-            
+            Called = false;
             moveDirection = Vector3.zero;
             
             isSlashing = false;
@@ -128,7 +131,9 @@ public class Slash : MonoBehaviour
  */
    void AttackSlash()
     {
-       // Collider[] hitEnemies = Physics.OverlapSphere(transform.position, Range,  EnemyLayer);
+
+        Called = true;
+        // Collider[] hitEnemies = Physics.OverlapSphere(transform.position, Range,  EnemyLayer);
         Collider[] hitEnemies = Physics.OverlapBox(transform.position, attackRange, Quaternion.Euler(NR.direction.x,NR.direction.y,0), EnemyLayer);
 
 
@@ -141,7 +146,7 @@ public class Slash : MonoBehaviour
            
 
         }
-
+        NR.CancelHook();
         
     }
    void OnDrawGizmos()
@@ -194,7 +199,14 @@ public class Slash : MonoBehaviour
         {
             if(other.GetComponent<VisionRange>().canSeePlayer == true)
             {
-                Mover.Health--;
+                if (!Called)
+                {
+                    Mover.Health--;
+                }else if (Called)
+                {
+                    Debug.Log("Tie");
+                }
+               
             }
         }
     }

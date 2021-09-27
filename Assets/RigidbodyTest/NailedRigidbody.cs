@@ -15,7 +15,7 @@ public class NailedRigidbody : MonoBehaviour
     public KeyCode Hook;
     public KeyCode Cancel;
     public float HookSpeed;
-    Rigidbody rb;
+    Rigidbody2D rb;
     bool isGrappling = false;
     public float count;
     Vector3 HookDirection;
@@ -34,7 +34,7 @@ public class NailedRigidbody : MonoBehaviour
         Pressed = 0;
         Wall = LayerMask.NameToLayer("Wall");
         Ground = LayerMask.NameToLayer("Ground");
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         
     }
 
@@ -157,7 +157,7 @@ public class NailedRigidbody : MonoBehaviour
             {
                
                 Debug.Log("Hooked");
-                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+              //  rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
             else if (collision.gameObject.layer==Ground)
             {
@@ -193,7 +193,7 @@ public class NailedRigidbody : MonoBehaviour
 
     void UnFreeze()
     {
-        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+       // rb.constraints = RigidbodyConstraints2D.FreezeRotationX;
     }
 
    public void CancelHook()
