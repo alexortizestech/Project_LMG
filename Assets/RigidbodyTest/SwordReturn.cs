@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordReturn : MonoBehaviour
@@ -11,7 +9,7 @@ public class SwordReturn : MonoBehaviour
     public Vector3 destiny;
 
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +22,12 @@ public class SwordReturn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+
         Player = GameObject.FindGameObjectWithTag("Player");
         SetParent();
         // destiny = Player.transform.position;
 
-        transform.position = Vector3.MoveTowards(this.gameObject.transform.position, Player.transform.position,speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(this.gameObject.transform.position, Player.transform.position, speed * Time.deltaTime);
         if (this.gameObject.transform.position == Player.transform.position)
         {
             Destroy(this.gameObject);
@@ -50,6 +48,6 @@ public class SwordReturn : MonoBehaviour
 
     public void SetParent()
     {
-         This.transform.parent = Player.transform; 
+        This.transform.parent = Player.transform;
     }
 }

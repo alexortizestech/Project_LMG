@@ -21,7 +21,7 @@ public class SwordBehaviour : MonoBehaviour
         Ground = LayerMask.NameToLayer("Ground");
         nr = GameObject.FindGameObjectWithTag("Player").GetComponent<NailedRigidbody>();
         direction = new Vector3(nr.direction.x, nr.direction.y, 0);
-        speed = 40;
+        speed = 15;
     }
 
     // Update is called once per frame
@@ -36,20 +36,23 @@ public class SwordBehaviour : MonoBehaviour
 ;       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == Wall || other.gameObject.layer == Ground)
         {
             //transform.position = transform.position;
             Colliding = true;
+            nr.CollidingSword = true;
 ;            Debug.Log("collision");
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == Wall || collision.gameObject.layer == Ground)
         {
+            Colliding = true;
+            nr.CollidingSword = true;
             Debug.Log("collision");
            // rb.constraints = RigidbodyConstraints.FreezeAll;
         }

@@ -15,7 +15,7 @@ public class NailedRigidbody : MonoBehaviour
     public KeyCode Hook;
     public KeyCode Cancel;
     public float HookSpeed;
-    Rigidbody rb;
+    Rigidbody2D rb;
     bool isGrappling = false;
     public float count;
     Vector3 HookDirection;
@@ -28,13 +28,14 @@ public class NailedRigidbody : MonoBehaviour
     GameObject clone,returner;
     public KeyCode Teleport;
     public float countObject;
+    public bool CollidingSword;
     // Start is called before the first frame update
     void Start()
     {
         Pressed = 0;
         Wall = LayerMask.NameToLayer("Wall");
         Ground = LayerMask.NameToLayer("Ground");
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         
     }
 
@@ -148,11 +149,11 @@ public class NailedRigidbody : MonoBehaviour
 
         if (!isHooking)
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+           // rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             
         }
     }
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
        
         if (collision.gameObject.CompareTag("Wall"))
@@ -161,9 +162,10 @@ public class NailedRigidbody : MonoBehaviour
             if (collision.gameObject.layer != Ground)
             {
                 isHooking = true;
-               
+              
                 Debug.Log("Hooked");
-                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+               // rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
             else if (collision.gameObject.layer==Ground)
             {
@@ -183,7 +185,7 @@ public class NailedRigidbody : MonoBehaviour
        
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         count += 1 * Time.deltaTime;
         if (count >= limitTime)
@@ -200,7 +202,8 @@ public class NailedRigidbody : MonoBehaviour
 
     void UnFreeze()
     {
-        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
    public void CancelHook()
@@ -215,7 +218,8 @@ public class NailedRigidbody : MonoBehaviour
         {
             returner = Instantiate(SwordReturn, clone.transform.position, clone.transform.rotation);
         }
-   
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         Destroy(clone);
         Pressed = 0;
     }
@@ -248,12 +252,17 @@ public class NailedRigidbody : MonoBehaviour
     void HyperDash()
     {
 
+
         UnFreeze();
         isHooking = true;
         count = 0;
         countObject = 0;
         //rb.velocity = destiny.normalized * HookSpeed;
         transform.position = clone.transform.position;
+        if (CollidingSword)
+        {
+           // rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
        // isHooking = false;
         //  rb.AddForce(destiny.normalized * HookSpeed);
         Destroy(clone);
