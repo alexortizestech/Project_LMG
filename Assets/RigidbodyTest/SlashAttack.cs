@@ -88,7 +88,7 @@ public class SlashAttack : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
             other.gameObject.GetComponent<EnemyBehaviour>().Health -= 1;

@@ -8,7 +8,7 @@ using TMPro;
 public class DamageIndex : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    public Slash slash;
+    public Movement mv;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,6 @@ public class DamageIndex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Damage: " + slash.Damage;
+        text.text = "Damage: " + mv.Damage;
     }
 }

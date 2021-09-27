@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     public Transform player,SpawnPoint;
-    Rigidbody rb;
+    Rigidbody2D rb;
     public float scuttleSpeed;
     public float turnSpeed;
     public Enemy enemy;
@@ -28,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
         nextFire = 0;
         fireRate = 1.5f;
         Direction = Vector3.right;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         Health = enemy.Health;
         limitL = transform.position.x - enemy.Walk;
         limitR= transform.position.x + enemy.Walk;
@@ -95,7 +95,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
 
 
-            Player.GetComponent<Slash>().Killed();
+            Player.GetComponent<Movement>().Killed();
             Destroy(this.gameObject);
         
     }

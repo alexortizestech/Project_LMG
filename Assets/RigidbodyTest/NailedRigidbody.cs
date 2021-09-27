@@ -194,7 +194,7 @@ public class NailedRigidbody : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
        // isHooking = false;
        // UnFreeze();

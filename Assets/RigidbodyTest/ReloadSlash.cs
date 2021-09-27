@@ -35,13 +35,13 @@ public class ReloadSlash : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")&&!isOff)
         {
-            if (other.GetComponent<Slash>().CountSlash != 1)
+            if (other.GetComponent<Movement>().CountSlash != 1)
             {
-                other.GetComponent<Slash>().CountSlash = 1;
+                other.GetComponent<Movement>().CountSlash = 1;
 
                 isOff = true;
                 Font.SetActive(false);

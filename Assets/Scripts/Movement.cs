@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     private AnimationScript anim;
+    
 
     [Space]
     [Header("Stats")]
@@ -44,12 +45,25 @@ public class Movement : MonoBehaviour
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
 
+
+    [Space]
+    [Header("Slash")]
+    public float radius,CountSlash,ComboTime,limit;
+    public LayerMask enemyLayer;
+    public int Damage;
+    public bool Combo;
+    public GameObject SpriteSlash;
+
     // Start is called before the first frame update
     void Start()
     {
+        CountSlash = 1;
+        Damage = 1;
+        //enemyLayer = LayerMask.NameToLayer("Enemy");
         coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<AnimationScript>();
+        nr.GetComponent<NailedRigidbody>();
     }
 
     // Update is called once per frame
@@ -64,6 +78,12 @@ public class Movement : MonoBehaviour
         Walk(dir);
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
+        ComboTime += 1 * Time.deltaTime;
+        if (ComboTime >= limit)
+        {
+            Damage = 1;
+            Combo = false;
+        }
         if (coll.onWall &&  canMove   && nr.isHooking)
         {
             if(side != coll.wallSide)
@@ -76,7 +96,7 @@ public class Movement : MonoBehaviour
         if (coll.onWall)
         {
             Debug.Log("freeze");
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+           // rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         if (Input.GetButtonUp("Fire3") || !coll.onWall) // || !canMove
         {
@@ -93,13 +113,13 @@ public class Movement : MonoBehaviour
         
         if (wallGrab && !isDashing)
         {
-            rb.gravityScale = 0;
+            /*rb.gravityScale = 0;
             if(x > .2f || x < -.2f)
             rb.velocity = new Vector2(rb.velocity.x, 0);
 
             float speedModifier = y > 0 ? .5f : 1;
 
-            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
+            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));*/
         }
         else
         {
@@ -130,8 +150,26 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(Attack) && !hasDashed)
         {
-            if(xRaw != 0 || yRaw != 0)
-                Dash(xRaw, yRaw);
+            if (CountSlash == 1)
+            {
+                if (xRaw != 0 || yRaw != 0)
+                    Dash(xRaw, yRaw);
+            }
+            
+        }
+
+        if (isDashing)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+
+                enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
+                Debug.Log("Killed");
+
+
+            }
         }
 
         if (coll.onGround && !groundTouch)
@@ -161,7 +199,13 @@ public class Movement : MonoBehaviour
             anim.Flip(side);
         }
 
-
+        if (CountSlash == 1)
+        {
+            SpriteSlash.SetActive(true);
+        }else if (CountSlash == 0)
+        {
+            SpriteSlash.SetActive(false);
+        }
     }
 
     void GroundTouch()
@@ -176,6 +220,7 @@ public class Movement : MonoBehaviour
 
     private void Dash(float x, float y)
     {
+        CountSlash = 0;
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
         FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
@@ -188,9 +233,32 @@ public class Movement : MonoBehaviour
         Vector2 dir = new Vector2(x, y);
 
         rb.velocity += dir.normalized * dashSpeed;
+
+      
         StartCoroutine(DashWait());
+        
+        
     }
 
+    public void Killed()
+    {
+        if (Combo)
+        {
+            Damage += 1;
+        }
+        else if (!Combo)
+        {
+            Combo = true;
+        }
+
+        CountSlash = 1;
+        ComboTime = 0;
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
     IEnumerator DashWait()
     {
         FindObjectOfType<GhostTrail>().ShowGhost();
@@ -204,6 +272,8 @@ public class Movement : MonoBehaviour
         isDashing = true;
 
         yield return new WaitForSeconds(.3f);
+
+
 
         dashParticle.Stop();
         rb.gravityScale = 3;
@@ -239,7 +309,7 @@ public class Movement : MonoBehaviour
 
     private void WallSlide()
     {
-        if(coll.wallSide != side)
+      /*  if(coll.wallSide != side)
          anim.Flip(side * -1);
 
         if (!canMove)
@@ -252,7 +322,7 @@ public class Movement : MonoBehaviour
         }
         float push = pushingWall ? 0 : rb.velocity.x;
 
-        rb.velocity = new Vector2(push, -slideSpeed);
+        rb.velocity = new Vector2(push, -slideSpeed);*/
     }
 
     private void Walk(Vector2 dir)
