@@ -160,7 +160,10 @@ public class NailedRigidbody : MonoBehaviour
             }
             else if (collision.gameObject.layer==Ground)
             {
-                CancelHook();
+                if (isHooking) {
+                    CancelHook();
+                }
+                
             }
         }
         if (Input.GetKeyDown(Cancel))
