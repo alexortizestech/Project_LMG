@@ -145,7 +145,12 @@ public class NailedRigidbody : MonoBehaviour
                 pointer.color = Color.red;
             }
         }
-      
+
+        if (!isHooking)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -155,6 +160,7 @@ public class NailedRigidbody : MonoBehaviour
             
             if (collision.gameObject.layer != Ground)
             {
+                isHooking = true;
                
                 Debug.Log("Hooked");
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -188,7 +194,8 @@ public class NailedRigidbody : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        isHooking = false;
+       // isHooking = false;
+       // UnFreeze();
     }
 
     void UnFreeze()

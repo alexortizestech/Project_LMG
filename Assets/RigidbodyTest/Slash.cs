@@ -64,7 +64,8 @@ public class Slash : MonoBehaviour
             currentDashTime = 0;
 
             // AttackSlash();
-            NR.CancelHook();
+            // NR.CancelHook();
+            NR.isHooking = false;
 
 
 
