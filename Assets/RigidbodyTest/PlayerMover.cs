@@ -25,8 +25,8 @@ public class PlayerMover : MonoBehaviour
     }
     void Update()
     {
-        if (!NR.isHooking)
-        {
+      //  if (!NR.isHooking)
+        //{
              mH = Input.GetAxis("Horizontal");
 
             rb.velocity = new Vector3(mH * speed, rb.velocity.y, 0);
@@ -37,7 +37,7 @@ public class PlayerMover : MonoBehaviour
                 isGrounded = false;
             }
 
-        }
+        //}
       /*  if (mH <=0)
         {
             //mirar a la izquierda

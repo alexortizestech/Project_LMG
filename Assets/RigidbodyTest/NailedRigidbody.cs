@@ -149,9 +149,10 @@ public class NailedRigidbody : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+       
         if (collision.gameObject.CompareTag("Wall"))
         {
-           
+            
             if (collision.gameObject.layer != Ground)
             {
                
@@ -174,6 +175,20 @@ public class NailedRigidbody : MonoBehaviour
         }
 
        
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        count += 1 * Time.deltaTime;
+        if (count >= limitTime)
+        {
+            CancelHook();
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        isHooking = false;
     }
 
     void UnFreeze()
@@ -201,6 +216,7 @@ public class NailedRigidbody : MonoBehaviour
 
     void HookAction()
     {
+
         UnFreeze();
         count = 0;
         isHooking = true;
@@ -211,6 +227,7 @@ public class NailedRigidbody : MonoBehaviour
 
     void AlternativeHook()
     {
+
         Pressed += 1;
        // UnFreeze();
         count = 0;
@@ -223,12 +240,14 @@ public class NailedRigidbody : MonoBehaviour
 
     void HyperDash()
     {
+
         UnFreeze();
         isHooking = true;
         count = 0;
         countObject = 0;
         //rb.velocity = destiny.normalized * HookSpeed;
         transform.position = clone.transform.position;
+       // isHooking = false;
         //  rb.AddForce(destiny.normalized * HookSpeed);
         Destroy(clone);
         Pressed = 0;
