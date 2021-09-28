@@ -76,6 +76,11 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if ((coll.onWall || coll.onCeiling) && nr.isHooking)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
@@ -95,7 +100,7 @@ public class Movement : MonoBehaviour
         {
             if(side != coll.wallSide)
                 anim.Flip(side*-1);
-           //wallGrab = true;
+           wallGrab = true;
             wallSlide = false;
 
           
@@ -238,6 +243,11 @@ public class Movement : MonoBehaviour
 
     private void Dash(float x, float y)
     {
+
+        if (coll.onWall)
+        {
+            nr.CancelHook();
+        }
         CountSlash = 0;
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);

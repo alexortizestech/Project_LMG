@@ -164,7 +164,7 @@ public class NailedRigidbody : MonoBehaviour
                 isHooking = true;
               
                 Debug.Log("Hooked");
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+               // rb.constraints = RigidbodyConstraints2D.FreezeAll;
                // rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
             else if (collision.gameObject.layer==Ground)

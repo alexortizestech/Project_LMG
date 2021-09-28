@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3055457737790718543}
   - component: {fileID: -4481460172858156889}
   - component: {fileID: -2205608114997750259}
+  - component: {fileID: 7583568498724876735}
   m_Layer: 2
   m_Name: Sword
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   back: 0
   nr: {fileID: 0}
-  speed: 15
+  speed: 98.68
   lastPos: {x: 0, y: 0, z: 0}
   Wall:
     serializedVersion: 2
@@ -132,3 +133,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!50 &7583568498724876735
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055457737790718538}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

@@ -7,10 +7,12 @@ public class Collision : MonoBehaviour
 
     [Header("Layers")]
     public LayerMask groundLayer;
+    public LayerMask WallLayer;
 
     [Space]
 
     public bool onGround;
+    public bool onCeiling;
     public bool onWall;
     public bool onRightWall;
     public bool onLeftWall;
@@ -21,7 +23,7 @@ public class Collision : MonoBehaviour
     [Header("Collision")]
 
     public float collisionRadius = 0.25f;
-    public Vector2 bottomOffset, rightOffset, leftOffset;
+    public Vector2 bottomOffset, rightOffset, leftOffset,ceilingOffset;
     private Color debugCollisionColor = Color.red;
 
     // Start is called before the first frame update
@@ -33,12 +35,13 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
+        onCeiling= Physics2D.OverlapCircle((Vector2)transform.position + ceilingOffset, collisionRadius, groundLayer) || Physics2D.OverlapCircle((Vector2)transform.position + ceilingOffset, collisionRadius, WallLayer);
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer) 
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, WallLayer) 
+            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, WallLayer);
 
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, WallLayer);
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, WallLayer);
 
         wallSide = onRightWall ? -1 : 1;
     }

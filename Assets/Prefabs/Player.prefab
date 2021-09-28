@@ -4831,6 +4831,7 @@ GameObject:
   - component: {fileID: 855462204106099224}
   - component: {fileID: 855462204106099227}
   - component: {fileID: 855462204106099229}
+  - component: {fileID: 691284185}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4868,7 +4869,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.58096653
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -4934,6 +4935,8 @@ MonoBehaviour:
   Damage: 1
   Combo: 0
   SpriteSlash: {fileID: 0}
+  Health: 0
+  gm: {fileID: 0}
 --- !u!114 &855462204106099224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4963,7 +4966,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 64
   onGround: 0
+  onCeiling: 0
   onWall: 0
   onRightWall: 0
   onLeftWall: 0
@@ -4987,6 +4994,8 @@ MonoBehaviour:
   limitX: {x: 0, y: 0, z: 0}
   limitY: {x: 0, y: 0, z: 0}
   Environment:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   isHooking: 0
   PlayerPos: {fileID: 855462204106099228}
@@ -5014,6 +5023,22 @@ MonoBehaviour:
   Teleport: 335
   countObject: 0
   CollidingSword: 0
+--- !u!70 &691284185
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855462204106099226}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.33}
+  m_Size: {x: 0.86, y: 0.82}
+  m_Direction: 0
 --- !u!1 &855462204161811919
 GameObject:
   m_ObjectHideFlags: 0

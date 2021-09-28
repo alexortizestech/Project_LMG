@@ -41,8 +41,8 @@ public class SwordBehaviour : MonoBehaviour
         if (other.gameObject.layer == Wall || other.gameObject.layer == Ground)
         {
             //transform.position = transform.position;
-            Colliding = true;
-            nr.CollidingSword = true;
+          //  Colliding = true;
+           // nr.CollidingSword = true;
 ;            Debug.Log("collision");
         }
     }
