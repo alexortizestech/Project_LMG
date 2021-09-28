@@ -54,9 +54,16 @@ public class Movement : MonoBehaviour
     public bool Combo;
     public GameObject SpriteSlash;
 
+
+    [Space]
+    [Header("Player")]
+    public int Health;
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
+        Health = 1;
         CountSlash = 1;
         Damage = 1;
         //enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -206,8 +213,19 @@ public class Movement : MonoBehaviour
         {
             SpriteSlash.SetActive(false);
         }
+
+
+        if (Health <= 0)
+        {
+            Die();
+        }
     }
 
+    void Die()
+    {
+        gm.GameOver();
+        Destroy(this.gameObject);
+    }
     void GroundTouch()
     {
         hasDashed = false;
@@ -385,5 +403,16 @@ public class Movement : MonoBehaviour
     {
         int particleSide = coll.onRightWall ? 1 : -1;
         return particleSide;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.GetComponent<VisionRange>().canSeePlayer == true)
+            {
+                Health--;
+            }
+        }
     }
 }

@@ -120,7 +120,7 @@ public class EnemyBehaviour : MonoBehaviour
    
     public void SlashingAttack()
     {
-        var destiny = -player.position - transform.position;
+        var destiny = player.position - transform.position;
         rb.velocity = new Vector3(0, 0, 0);
         rb.AddForce(destiny* dashSpeed);
     }

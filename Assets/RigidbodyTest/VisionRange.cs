@@ -45,19 +45,20 @@ public class VisionRange : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        Collider2D[] rangeChecks = Physics2D.OverlapCircleAll(transform.position, radius, targetMask);
 
         if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
-
-            if (Vector3.Angle(Vector3.left, directionToTarget) < angle / 2)
+            Vector2 directionToTarget = (target.position - transform.position).normalized;
+            Debug.Log(target);
+            if (Vector2.Angle(Vector2.left, directionToTarget) < angle / 2)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                float distanceToTarget = Vector2.Distance(transform.position, target.position);
+                Debug.Log(distanceToTarget);
+                if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
+                    
                     canSeePlayer = true;
 
                 }
@@ -72,7 +73,7 @@ public class VisionRange : MonoBehaviour
             canSeePlayer = false;
     }
 
-
+    
 
 
 }
