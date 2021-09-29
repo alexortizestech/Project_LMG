@@ -48,6 +48,7 @@ public class Movement : MonoBehaviour
 
     [Space]
     [Header("Slash")]
+
     public float radius,CountSlash,ComboTime,limit;
     public LayerMask enemyLayer;
     public int Damage;
@@ -59,6 +60,7 @@ public class Movement : MonoBehaviour
     [Header("Player")]
     public int Health;
     public GameManager gm;
+    public Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,12 @@ public class Movement : MonoBehaviour
         if ((coll.onWall || coll.onCeiling) && nr.isHooking)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        if (coll.onGround)
+        {
+           // nr.CancelHook();
+            nr.isHooking = false;
         }
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -224,6 +232,12 @@ public class Movement : MonoBehaviour
         {
             Die();
         }
+       
+        /*if (nr.isHooking)
+        {
+            lastPos = transform.position;
+        }*/
+        
     }
 
     void Die()
@@ -244,7 +258,7 @@ public class Movement : MonoBehaviour
     private void Dash(float x, float y)
     {
 
-        if (coll.onWall)
+        if (coll.onWall || coll.onCeiling)
         {
             nr.CancelHook();
         }
@@ -313,7 +327,7 @@ public class Movement : MonoBehaviour
     IEnumerator GroundDash()
     {
         yield return new WaitForSeconds(.15f);
-        if (coll.onGround)
+        //if (coll.onGround)
             hasDashed = false;
     }
 
@@ -419,10 +433,23 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (other.GetComponent<VisionRange>().canSeePlayer == true)
+            if (other.GetComponent<VisionRange>().canSeePlayer == true && !isDashing)
             {
                 Health--;
             }
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (nr.isHooking)
+            {
+                //transform.position = lastPos;
+            }
+           
         }
     }
 }

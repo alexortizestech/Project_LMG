@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordBehaviour : MonoBehaviour
 {
+    public Vector3 Lastpos;
     public float back;
     public NailedRigidbody nr;
     public float speed;
@@ -30,8 +31,13 @@ public class SwordBehaviour : MonoBehaviour
         if (!Colliding)
         {
             transform.position +=direction * speed * Time.deltaTime;
+            //Lastpos = transform.position;
         }
 
+        if (Colliding)
+        {
+            
+        }
         back += 1 * Time.deltaTime;
 ;       
     }
@@ -51,6 +57,7 @@ public class SwordBehaviour : MonoBehaviour
     {
         if (collision.gameObject.layer == Wall || collision.gameObject.layer == Ground)
         {
+           // transform.position = Lastpos;
             Colliding = true;
             nr.CollidingSword = true;
             Debug.Log("collision");
@@ -58,10 +65,23 @@ public class SwordBehaviour : MonoBehaviour
         }
     }
 
+
+    private void OnCollisionEnter(UnityEngine.Collision collision)
+    {
+        if (collision.gameObject.layer == Wall || collision.gameObject.layer == Ground)
+        {
+           // transform.position = Lastpos;
+            Colliding = true;
+            nr.CollidingSword = true;
+            Debug.Log("collision");
+            // rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
     void OnBecameInvisible()
     {
         back = 0;
-        if (back >= 1)
+        if (back >= 3)
         {
             nr.CancelHook();
         }

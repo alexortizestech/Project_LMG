@@ -70,7 +70,7 @@ public class NailedRigidbody : MonoBehaviour
                  }
 
            if(hit.point.x>Vector3.zero.x|| hit.point.y>Vector3.zero.y)
-            if (hit.collider.CompareTag("Wall")) 
+            //if (hit.collider.CompareTag("Wall")) 
             {
 
                 
@@ -149,7 +149,7 @@ public class NailedRigidbody : MonoBehaviour
 
         if (!isHooking)
         {
-           // rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             
         }
     }
@@ -158,7 +158,9 @@ public class NailedRigidbody : MonoBehaviour
        
         if (collision.gameObject.CompareTag("Wall"))
         {
-            
+            isHooking = true;
+
+            if (collision.gameObject.layer != Ground)
             if (collision.gameObject.layer != Ground)
             {
                 isHooking = true;
@@ -170,7 +172,7 @@ public class NailedRigidbody : MonoBehaviour
             else if (collision.gameObject.layer==Ground)
             {
                 if (isHooking) {
-                    CancelHook();
+                   // CancelHook();
                 }
                 
             }
