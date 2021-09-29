@@ -47,7 +47,7 @@ public class SwordBehaviour : MonoBehaviour
         if (other.gameObject.layer == Wall || other.gameObject.layer == Ground)
         {
             //transform.position = transform.position;
-          //  Colliding = true;
+            Colliding = true;
            // nr.CollidingSword = true;
 ;            Debug.Log("collision");
         }
@@ -65,6 +65,8 @@ public class SwordBehaviour : MonoBehaviour
         }
     }
 
+    
+
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
@@ -81,7 +83,7 @@ public class SwordBehaviour : MonoBehaviour
     void OnBecameInvisible()
     {
         back = 0;
-        if (back >= 3)
+        if (back >= 1)
         {
             nr.CancelHook();
         }

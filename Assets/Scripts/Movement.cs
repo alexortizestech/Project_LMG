@@ -78,17 +78,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if ((coll.onWall || coll.onCeiling) && nr.isHooking)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-
-        if (coll.onGround)
-        {
-           // nr.CancelHook();
-            nr.isHooking = false;
-        }
+     
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
@@ -130,7 +120,21 @@ public class Movement : MonoBehaviour
             wallJumped = false;
             GetComponent<BetterJumping>().enabled = true;
         }
-        
+
+        if ((coll.onWall || coll.onCeiling) && nr.isHooking)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        if (coll.onGround)
+        {
+            // nr.CancelHook();
+            nr.isHooking = false;
+        }
+        if (nr.isHooking == false)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
         if (wallGrab && !isDashing)
         {
             /*rb.gravityScale = 0;

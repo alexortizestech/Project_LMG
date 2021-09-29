@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0083f138c65084e94b37a2fbb086fd, type: 3}
   m_Name: BaseEnemy
   m_EditorClassIdentifier: 
-  Walk: 5
+  Walk: 3
   Name: BaseEnemy
   Health: 1
   Damage: 1

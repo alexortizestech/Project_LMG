@@ -29,9 +29,11 @@ public class NailedRigidbody : MonoBehaviour
     public KeyCode Teleport;
     public float countObject;
     public bool CollidingSword;
+    public Collision coll;
     // Start is called before the first frame update
     void Start()
     {
+        coll = GetComponent<Collision>();
         Pressed = 0;
         Wall = LayerMask.NameToLayer("Wall");
         Ground = LayerMask.NameToLayer("Ground");
@@ -210,6 +212,8 @@ public class NailedRigidbody : MonoBehaviour
 
    public void CancelHook()
     {
+        coll.onWall = false;
+        coll.onCeiling = false;
         foreach (GameObject cube in Environment)
         {
             cube.tag = "Untagged";

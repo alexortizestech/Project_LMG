@@ -81,7 +81,18 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
 
+    private void LateUpdate()
+    {
+      //  myFunctionDone = false;
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+           // myFunctionDone = false;
+        }
+    }
     public void TakeDamage(int damage)
     {
         if (!myFunctionDone)
