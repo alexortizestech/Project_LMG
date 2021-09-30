@@ -34,6 +34,7 @@ public class NailedRigidbody : MonoBehaviour
     public Movement mv;
     public Transform HookSpawnPoint;
     public GameObject LeftSpawn, RightSpawn, DownSpawn;
+    public int KeyCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,38 +80,68 @@ public class NailedRigidbody : MonoBehaviour
 
         if (Input.GetKeyDown(Hook))
         {
-                 foreach (GameObject cube in Environment)
-                 {
-                    cube.tag = "Wall";
-                 }
-
-           if(hit.point.x>Vector3.zero.x|| hit.point.y>Vector3.zero.y)
-            //if (hit.collider.CompareTag("Wall")) 
+          
+            if ((GameObject.Find("Sword(Clone)") == null))
             {
 
-                
-                HookDirection = (hit.point - transform.position);
-                
-                
-               // HookAction();
-                
-            }
 
-            if (Pressed == 0)
-            {
-                if(direction.x!=0 || direction.y != 0)
+                if ((direction.x != 0 || direction.y != 0))
                 {
-                    AlternativeHook();
+                   
+
+
+
+                      AlternativeHook();
+                    
+
+
+                    foreach (GameObject cube in Environment)
+                    {
+                        cube.tag = "Wall";
+                    }
+
+                    if (hit.point.x > Vector3.zero.x || hit.point.y > Vector3.zero.y)
+                    //if (hit.collider.CompareTag("Wall")) 
+                    {
+
+
+                        HookDirection = (hit.point - transform.position);
+
+
+                        // HookAction();
+
+                    }
                 }
+
                 
+            }
+            else
+            {
                 
 
+                destiny = clone.transform.position;
+
+
+                foreach (GameObject cube in Environment)
+                {
+                    cube.tag = "Wall";
+                }
+                HyperDash();
             }
+
+
+
+
+
 
         }
 
+        if ((GameObject.Find("Sword(Clone)") != null))
+        {
+            countObject += 1 * Time.deltaTime;
+        }
 
-        if (Pressed == 1)
+      /*  if (Pressed == 1)
         {
             countObject += 1 * Time.deltaTime;
             destiny = clone.transform.position;
@@ -124,7 +155,7 @@ public class NailedRigidbody : MonoBehaviour
             }
                
         }
-
+      */
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
 
 
