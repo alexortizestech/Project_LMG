@@ -4937,6 +4937,8 @@ MonoBehaviour:
   SpriteSlash: {fileID: 0}
   Health: 0
   gm: {fileID: 0}
+  lastPos: {x: 0, y: 0, z: 0}
+  ComboPlaceHolder: {fileID: 0}
 --- !u!114 &855462204106099224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4979,6 +4981,7 @@ MonoBehaviour:
   bottomOffset: {x: 0, y: -0.79}
   rightOffset: {x: 0.5, y: -0.33}
   leftOffset: {x: -0.5, y: -0.33}
+  ceilingOffset: {x: 0, y: 0}
 --- !u!114 &855462204106099229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5015,6 +5018,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   pointer: {fileID: 0}
+  AimSprite: {fileID: 0}
   Sword: {fileID: 3055457737790718538, guid: a2e5b452c6556684583ab3862a53df59, type: 3}
   SwordReturn: {fileID: 2227946930260864579, guid: 3234e28acbde71f44bdfae354276746c,
     type: 3}
@@ -5023,6 +5027,12 @@ MonoBehaviour:
   Teleport: 335
   countObject: 0
   CollidingSword: 0
+  coll: {fileID: 0}
+  mv: {fileID: 0}
+  HookSpawnPoint: {fileID: 0}
+  LeftSpawn: {fileID: 0}
+  RightSpawn: {fileID: 0}
+  DownSpawn: {fileID: 0}
 --- !u!70 &691284185
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
