@@ -94,6 +94,13 @@ public class Movement : MonoBehaviour
         {
             Damage = 1;
             Combo = false;
+
+        }
+
+        if (Combo == false)
+        {
+            Damage = 1;
+           
         }
         if (coll.onWall &&  canMove   && nr.isHooking)
         {
@@ -192,7 +199,7 @@ public class Movement : MonoBehaviour
 
 
                 enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
-                if (enemy.GetComponent<EnemyBehaviour>().Failed==true)
+                if (enemy.GetComponent<EnemyBehaviour>().Health>Damage)
                 {
                     Combo = false;
                     Debug.Log("Failed Kill");
