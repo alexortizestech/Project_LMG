@@ -278,6 +278,7 @@ public class NailedRigidbody : MonoBehaviour
        // UnFreeze();
         count = 0;
         countObject = 0;
+        
         if (coll.onLeftWall)
         {
             HookSpawnPoint = RightSpawn.transform;
@@ -292,9 +293,12 @@ public class NailedRigidbody : MonoBehaviour
         {
             HookSpawnPoint = transform;
         }
+        if (coll.onGround)
+        {
+            HookSpawnPoint = transform;
+        }
 
-
-        clone= Instantiate(Sword, HookSpawnPoint.position, transform.rotation);
+        clone = Instantiate(Sword, HookSpawnPoint.position, transform.rotation);
         
         
         

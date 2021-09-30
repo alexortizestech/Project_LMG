@@ -20,10 +20,12 @@ public class EnemyBehaviour : MonoBehaviour
     public VisionRange fov;
     public float inRange;
     public float StartHealth;
+    public bool Failed;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         StartHealth = enemy.Health;
         dashSpeed = 100;
         fov = GetComponent<VisionRange>();
@@ -107,6 +109,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (Health < StartHealth)
                 {
+                    Failed = true;
                     myFunctionDone = false;
                 }
             }
@@ -125,7 +128,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void Die()
     {
 
-
+           
             Player.GetComponent<Movement>().Killed();
             Destroy(this.gameObject);
         

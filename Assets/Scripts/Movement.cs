@@ -61,6 +61,7 @@ public class Movement : MonoBehaviour
     public int Health;
     public GameManager gm;
     public Vector3 lastPos;
+    public GameObject ComboPlaceHolder;
 
     // Start is called before the first frame update
     void Start()
@@ -191,6 +192,11 @@ public class Movement : MonoBehaviour
 
 
                 enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
+                if (enemy.GetComponent<EnemyBehaviour>().Failed==true)
+                {
+                    Combo = false;
+                    Debug.Log("Failed Kill");
+                }
                 Debug.Log("Killed");
 
 
@@ -243,9 +249,12 @@ public class Movement : MonoBehaviour
             lastPos = transform.position;
         }*/
 
-        if (!canMove)
+        if (Combo)
         {
-
+            ComboPlaceHolder.SetActive(true);
+        }else if (!Combo)
+        {
+            ComboPlaceHolder.SetActive(false);
         }
     }
 
@@ -457,6 +466,7 @@ public class Movement : MonoBehaviour
         {
             if (!isDashing)
             {
+                other.GetComponent<EnemyBehaviour>().Failed = true;
                 other.GetComponent<EnemyBehaviour>().myFunctionDone = false;
             }
         }

@@ -57,7 +57,7 @@ public class VisionRange : MonoBehaviour
             if (Vector2.Angle(direction, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
-                Debug.Log(distanceToTarget);
+               // Debug.Log(distanceToTarget);
                 if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     
