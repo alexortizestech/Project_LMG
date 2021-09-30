@@ -159,8 +159,9 @@ public class EnemyBehaviour : MonoBehaviour
         inRange += 1 * Time.deltaTime;
         var destiny = player.position - transform.position;
         rb.velocity = new Vector3(0, 0, 0);
-        rb.velocity = new Vector3(player.position.x, 0, 0); //opcional
-        yield return new WaitForSeconds(1f);
+        rb.velocity = new Vector3(-player.position.x, 0, 0); //opcional
+        yield return new WaitForSeconds(0.1f); //
+        yield return new WaitForSeconds(0.5f); //1f
         rb.AddForce(destiny * dashSpeed);
     }
 }
