@@ -18,10 +18,13 @@ public class EnemyBehaviour : MonoBehaviour
     public string attack;
     public float dashSpeed;
     public VisionRange fov;
+    public float inRange;
+    public float StartHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartHealth = enemy.Health;
         dashSpeed = 100;
         fov = GetComponent<VisionRange>();
         attack = enemy.Attack;
@@ -32,6 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
         Health = enemy.Health;
         limitL = transform.position.x - enemy.Walk;
         limitR= transform.position.x + enemy.Walk;
+        fov.direction = Vector2.left;
     }
 
     // Update is called once per frame
@@ -44,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 rb.velocity = new Vector3(0, 0, 0);
                 Direction = Vector3.left;
-
+                fov.direction = Vector2.left;
 
 
             }
@@ -52,7 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 rb.velocity = new Vector3(0, 0, 0);
                 Direction = Vector3.right;
-
+                fov.direction = Vector2.right;
             }
             rb.AddForce(Direction * scuttleSpeed * Time.deltaTime);
         }
@@ -78,6 +82,15 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Die();
         }
+
+        if (inRange >= 1.5f)
+        {
+            fov.canSeePlayer = false;
+            inRange = 0;
+        }
+
+
+      
     }
 
 
@@ -90,7 +103,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-           // myFunctionDone = false;
+            if (myFunctionDone && collision.GetComponent<Movement>().isDashing==false)
+            {
+                if (Health < StartHealth)
+                {
+                    myFunctionDone = false;
+                }
+            }
+            // myFunctionDone = false;
         }
     }
     public void TakeDamage(int damage)
@@ -131,10 +151,16 @@ public class EnemyBehaviour : MonoBehaviour
    
     public void SlashingAttack()
     {
-        var destiny = player.position - transform.position;
-        rb.velocity = new Vector3(0, 0, 0);
-        rb.AddForce(destiny* dashSpeed);
+        StartCoroutine(DashingEnemy());
     }
 
-    
+    IEnumerator DashingEnemy()
+    {
+        inRange += 1 * Time.deltaTime;
+        var destiny = player.position - transform.position;
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.velocity = new Vector3(player.position.x, 0, 0); //opcional
+        yield return new WaitForSeconds(1f);
+        rb.AddForce(destiny * dashSpeed);
+    }
 }

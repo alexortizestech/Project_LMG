@@ -83,10 +83,12 @@ public class SwordBehaviour : MonoBehaviour
     void OnBecameInvisible()
     {
         back = 0;
-        if (back >= 1)
+        if (back >= 0.5f)
         {
             nr.CancelHook();
         }
        
     }
+
+   
 }

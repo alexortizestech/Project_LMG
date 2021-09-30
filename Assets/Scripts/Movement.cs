@@ -446,10 +446,21 @@ public class Movement : MonoBehaviour
             {
                 Health--;
             }
+            Debug.Log("Trigger Works");
+
         }
     }
 
-
+    private void OnTriggerExit2D (Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (!isDashing)
+            {
+                other.GetComponent<EnemyBehaviour>().myFunctionDone = false;
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))

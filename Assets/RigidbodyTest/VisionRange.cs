@@ -15,7 +15,7 @@ public class VisionRange : MonoBehaviour
     public LayerMask obstructionMask;
 
     public bool canSeePlayer;
-
+    public Vector2 direction;
     EnemyBehaviour Behaviour;
     private void Start()
     {
@@ -31,6 +31,8 @@ public class VisionRange : MonoBehaviour
 
             //Behaviour.SlashingAttack();
         }
+
+        
     }
     private IEnumerator FOVRoutine()
     {
@@ -52,7 +54,7 @@ public class VisionRange : MonoBehaviour
             Transform target = rangeChecks[0].transform;
             Vector2 directionToTarget = (target.position - transform.position).normalized;
             Debug.Log(target);
-            if (Vector2.Angle(Vector2.left, directionToTarget) < angle / 2)
+            if (Vector2.Angle(direction, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
                 Debug.Log(distanceToTarget);
