@@ -22,6 +22,7 @@ public class NailedRigidbody : MonoBehaviour
     public float limitTime;
     public LayerMask Ground, Wall;
     public Image pointer;
+    public GameObject AimSprite;
     public GameObject Sword,SwordReturn;
     public int Pressed;
     public Vector3 destiny;
@@ -52,8 +53,16 @@ public class NailedRigidbody : MonoBehaviour
        // limitX=Screen.width.
         origin = new Vector2(PlayerPos.transform.position.x, PlayerPos.transform.position.y);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        
-        
+      
+
+        if(direction.x !=0 ||direction.y != 0)
+        {
+            AimSprite.SetActive(true);
+        }else if(direction.x == 0 && direction.y == 0)
+        {
+            AimSprite.SetActive(false);
+        }
+
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
         endPosition = origin + (length * direction);
@@ -158,6 +167,14 @@ public class NailedRigidbody : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             
         }
+
+
+        if (coll.onGround)
+        {
+            coll.onWall = false;
+            coll.onRightWall = false;
+            coll.onLeftWall = false;
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -195,7 +212,7 @@ public class NailedRigidbody : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        count += 1 * Time.deltaTime;
+        //count += 1 * Time.deltaTime;
         if (count >= limitTime)
         {
             CancelHook();
