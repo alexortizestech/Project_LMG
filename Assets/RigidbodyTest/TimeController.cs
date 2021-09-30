@@ -13,25 +13,21 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        limit = 5*0.25f;
-        count = 5;
+       
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        float pressed = Input.GetAxisRaw("BulletTime");
+
         count += 1 * Time.deltaTime;
-        Slowing = Input.GetAxis("BulletTime");
-        if (Slowing==1)
-        {
-            pressed = true;
-        }
 
-
-        if (pressed)
+        if (pressed!=0)
         {
             count = 0;
-            count += 1 * Time.deltaTime;
+           // count += 1 * Time.deltaTime;
             Time.timeScale = 0.25f;
             nr.direction *= 4;
 
@@ -42,7 +38,10 @@ public class TimeController : MonoBehaviour
             ReturnTime();
         }
 
-       
+        if (Input.GetKeyDown(nr.Cancel))
+        {
+            ReturnTime();
+        }
         Debug.Log(Time.timeScale);
     }
 
@@ -52,6 +51,6 @@ public class TimeController : MonoBehaviour
     {
         pressed = false;
         Time.timeScale = 1;
-        count = 0;
+        //count = 0;
     }
 }

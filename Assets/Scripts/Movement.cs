@@ -123,6 +123,7 @@ public class Movement : MonoBehaviour
 
         if ((coll.onWall || coll.onCeiling) && nr.isHooking)
         {
+            //canMove = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
@@ -236,12 +237,16 @@ public class Movement : MonoBehaviour
         {
             Die();
         }
-       
+
         /*if (nr.isHooking)
         {
             lastPos = transform.position;
         }*/
-        
+
+        if (!canMove)
+        {
+
+        }
     }
 
     void Die()

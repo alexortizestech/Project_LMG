@@ -30,9 +30,13 @@ public class NailedRigidbody : MonoBehaviour
     public float countObject;
     public bool CollidingSword;
     public Collision coll;
+    public Movement mv;
+    public Transform HookSpawnPoint;
+    public GameObject LeftSpawn, RightSpawn, DownSpawn;
     // Start is called before the first frame update
     void Start()
     {
+        mv = GetComponent<Movement>();
         coll = GetComponent<Collision>();
         Pressed = 0;
         Wall = LayerMask.NameToLayer("Wall");
@@ -212,6 +216,14 @@ public class NailedRigidbody : MonoBehaviour
 
    public void CancelHook()
     {
+
+        if (coll.onCeiling == true)
+        {
+            rb.AddForce(Vector3.down * Time.deltaTime);
+        }
+        mv.wallGrab = false;
+        mv.wallSlide = false;
+        mv.canMove = true;
         coll.onWall = false;
         coll.onCeiling = false;
         foreach (GameObject cube in Environment)
@@ -249,7 +261,23 @@ public class NailedRigidbody : MonoBehaviour
        // UnFreeze();
         count = 0;
         countObject = 0;
-        clone= Instantiate(Sword, transform.position, transform.rotation);
+        if (coll.onLeftWall)
+        {
+            HookSpawnPoint = RightSpawn.transform;
+        }else if (coll.onRightWall)
+        {
+            HookSpawnPoint = LeftSpawn.transform;
+        }else if (coll.onCeiling)
+        {
+            HookSpawnPoint = DownSpawn.transform;
+        }
+        else
+        {
+            HookSpawnPoint = transform;
+        }
+
+
+        clone= Instantiate(Sword, HookSpawnPoint.position, transform.rotation);
         
         
         
