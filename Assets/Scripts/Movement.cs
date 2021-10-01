@@ -142,8 +142,29 @@ public class Movement : MonoBehaviour
         }
         if (nr.isHooking == false)
         {
+         
+            
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+
+
+        if (nr.isHooking)
+        {
+            if (Input.GetKeyDown(JumpKey))
+            {
+                nr.CancelHook();
+            }
+        }
+
+        if (Input.GetKeyDown(JumpKey))
+        {
+            if(coll.onGround && (coll.onLeftWall || coll.onRightWall))
+            {
+                nr.CancelHook();
+            }
+        }
+
+
         if (wallGrab && !isDashing)
         {
             /*rb.gravityScale = 0;

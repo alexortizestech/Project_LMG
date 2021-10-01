@@ -683,7 +683,7 @@ PlayerSettings:
     Analytics: 1
     Build: 0
     Collab: 0
-    Game Performance: 0
+    Game Performance: 1
     Purchasing: 0
     UDP: 0
     UNet: 1
@@ -701,7 +701,7 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 7b9b844c-0535-43f0-90bf-54acd7faac1a
+  cloudProjectId: ffb8f3be-956d-40fd-a514-5a28bd46d57f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Killing Delivery

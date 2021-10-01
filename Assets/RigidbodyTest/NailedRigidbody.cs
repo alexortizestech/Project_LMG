@@ -203,8 +203,8 @@ public class NailedRigidbody : MonoBehaviour
         if (coll.onGround)
         {
             coll.onWall = false;
-            coll.onRightWall = false;
-            coll.onLeftWall = false;
+            //coll.onRightWall = false;
+           // coll.onLeftWall = false;
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -269,6 +269,19 @@ public class NailedRigidbody : MonoBehaviour
         {
             rb.AddForce(Vector3.down * Time.deltaTime);
         }
+
+        if (coll.onRightWall)
+        {
+            rb.AddForce(Vector3.left * Time.deltaTime);
+            
+        }
+        if (coll.onLeftWall)
+        {
+            rb.AddForce(Vector3.right * Time.deltaTime);
+           
+        }
+        
+
         mv.wallGrab = false;
         mv.wallSlide = false;
         mv.canMove = true;
