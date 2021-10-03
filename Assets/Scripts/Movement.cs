@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
     public KeyCode Attack,JumpKey;
@@ -62,10 +63,13 @@ public class Movement : MonoBehaviour
     public GameManager gm;
     public Vector3 lastPos;
     public GameObject ComboPlaceHolder;
-
+    public Scene currentScene;
+    public AnalyticsEventTracker at;
+  
     // Start is called before the first frame update
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
         Health = 1;
         CountSlash = 1;
         Damage = 1;
@@ -288,6 +292,12 @@ public class Movement : MonoBehaviour
 
     void Die()
     {
+        
+       AnalyticsResult analyticsResult= Analytics.CustomEvent("PlayerDeath",new Dictionary<string, object>{
+           {
+               "Level",currentScene.name }});
+        Debug.Log("result" + analyticsResult);
+        Analytics.FlushEvents();
         gm.GameOver();
         Destroy(this.gameObject);
     }

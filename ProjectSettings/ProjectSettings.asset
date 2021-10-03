@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Killing Delivery
+  productName: SlashProject
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -683,7 +683,7 @@ PlayerSettings:
     Analytics: 1
     Build: 0
     Collab: 0
-    Game Performance: 1
+    Game Performance: 0
     Purchasing: 0
     UDP: 0
     UNet: 1
@@ -701,10 +701,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: ffb8f3be-956d-40fd-a514-5a28bd46d57f
+  cloudProjectId: 33c8750c-8a47-4386-b689-e16af1309d52
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Killing Delivery
+  projectName: SlashProject
   organizationId: unity_gpej213tmhc1mg
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
