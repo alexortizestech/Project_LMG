@@ -66,12 +66,13 @@ public class Movement : MonoBehaviour
     public GameObject ComboPlaceHolder;
     public Scene currentScene;
     public AnalyticsEventTracker at;
-    [SerializeField] public int playerID = 1;
+    [SerializeField] public int playerID = 0;
     [SerializeField] public Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerID = 0;
         player = ReInput.players.GetPlayer(playerID);
         currentScene = SceneManager.GetActiveScene();
         Health = 1;
