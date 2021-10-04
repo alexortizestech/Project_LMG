@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using Rewired;
 public class Movement : MonoBehaviour
 {
     public KeyCode Attack,JumpKey;
@@ -65,10 +66,13 @@ public class Movement : MonoBehaviour
     public GameObject ComboPlaceHolder;
     public Scene currentScene;
     public AnalyticsEventTracker at;
-  
+    [SerializeField] public int playerID = 1;
+    [SerializeField] public Player player;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = ReInput.players.GetPlayer(playerID);
         currentScene = SceneManager.GetActiveScene();
         Health = 1;
         CountSlash = 1;
@@ -154,13 +158,13 @@ public class Movement : MonoBehaviour
 
         if (nr.isHooking)
         {
-            if (Input.GetKeyDown(JumpKey))
+            if (player.GetButtonDown("Jump"))
             {
                 nr.CancelHook();
             }
         }
 
-        if (Input.GetKeyDown(JumpKey))
+        if (player.GetButtonDown("Jump"))
         {
             if(coll.onGround && (coll.onLeftWall || coll.onRightWall))
             {
@@ -196,7 +200,7 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (Input.GetKeyDown(JumpKey))
+        if (player.GetButtonDown("Jump"))
         {
             anim.SetTrigger("jump");
 
@@ -206,7 +210,7 @@ public class Movement : MonoBehaviour
                 WallJump();
         }
 
-        if (Input.GetKeyDown(Attack) && !hasDashed)
+        if (player.GetButtonDown("Slash") && !hasDashed)
         {
             if (CountSlash == 1)
             {

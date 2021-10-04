@@ -9,7 +9,8 @@ public class TimeController : MonoBehaviour
     public NailedRigidbody nr;
     // public KeyCode Slower;
     public float Slowing;
-    public bool pressed;
+    public float pressed;
+    public Movement mv;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,16 +21,26 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float pressed = Input.GetAxisRaw("BulletTime");
+       
 
         count += 1 * Time.deltaTime;
 
-        if (pressed!=0)
+        if (mv.player.GetButtonUp("BulletTime"))
         {
-            count = 0;
-           // count += 1 * Time.deltaTime;
-            Time.timeScale = 0.25f;
-            nr.direction *= 4;
+            pressed++;
+            
+            if (pressed%2!=0)
+            {
+                count = 0;
+                // count += 1 * Time.deltaTime;
+                Time.timeScale = 0.25f;
+                nr.direction *= 4;
+            }
+
+            if (pressed % 2 == 0)
+            {
+                ReturnTime();
+            }
 
         }
 
@@ -49,7 +60,7 @@ public class TimeController : MonoBehaviour
    
     void ReturnTime()
     {
-        pressed = false;
+        //pressed = false;
         Time.timeScale = 1;
         //count = 0;
     }

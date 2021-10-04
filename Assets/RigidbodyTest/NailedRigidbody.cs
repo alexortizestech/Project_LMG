@@ -78,7 +78,7 @@ public class NailedRigidbody : MonoBehaviour
         
        
 
-        if (Input.GetKeyDown(Hook))
+        if (mv.player.GetButtonDown("Teleport"))
         {
           
             if ((GameObject.Find("Sword(Clone)") == null))
@@ -159,7 +159,7 @@ public class NailedRigidbody : MonoBehaviour
         Debug.DrawLine(PlayerPos.transform.position, endPosition, Color.green, 0);
 
 
-        if (Input.GetKeyDown(Cancel))
+        if (mv.player.GetButtonDown("Cancel"))
         {
             Debug.Log("Cancelling");
             CancelHook();
@@ -231,7 +231,7 @@ public class NailedRigidbody : MonoBehaviour
                 
             }
         }
-        if (Input.GetKeyDown(Cancel))
+         if (mv.player.GetButtonDown("Cancel"))
         {
             Debug.Log("Cancelling");
             CancelHook();
