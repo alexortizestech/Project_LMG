@@ -400,8 +400,8 @@ public class Movement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up  + wallDir / 1.5f), true);
-
+        Jump((Vector2.up  + wallDir / 2.5f), true);
+       // Jump((Vector2.up), true);
         wallJumped = true;
     }
 
