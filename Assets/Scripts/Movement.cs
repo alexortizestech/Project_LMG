@@ -51,7 +51,10 @@ public class Movement : MonoBehaviour
     [Space]
     [Header("Slash")]
 
-    public float radius,CountSlash,ComboTime,limit;
+    public float radius;
+    public float CountSlash;
+    public float ComboTime;
+    public float limit;
     public LayerMask enemyLayer;
     public int Damage;
     public bool Combo;
@@ -63,15 +66,20 @@ public class Movement : MonoBehaviour
     public int Health;
     public GameManager gm;
     public Vector3 lastPos;
-    public GameObject ComboPlaceHolder;
+    public GameObject ComboPlaceHolder,door;
     public Scene currentScene;
     public AnalyticsEventTracker at;
     [SerializeField] public int playerID = 0;
     [SerializeField] public Player player;
+    public bool ipPackage, controlPackage;
+    public int ipCount;
+    [SerializeField] public int ipKills;
 
     // Start is called before the first frame update
     void Start()
     {
+        ipPackage = false;
+        controlPackage = false;
         playerID = 0;
         player = ReInput.players.GetPlayer(playerID);
         currentScene = SceneManager.GetActiveScene();
@@ -293,6 +301,21 @@ public class Movement : MonoBehaviour
         {
             ComboPlaceHolder.SetActive(false);
         }
+
+        if (ipCount >= ipKills)
+        {
+            ipPackage = true;
+        }
+
+        if (ipPackage == true)
+        {
+            door.SetActive(true);
+        }
+
+        if (controlPackage == true)
+        {
+            door.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 
     void Die()
@@ -345,8 +368,10 @@ public class Movement : MonoBehaviour
 
     public void Killed()
     {
+        ipCount += 1;
         if (Combo)
         {
+           
             Damage += 1;
         }
         else if (!Combo)
@@ -500,6 +525,24 @@ public class Movement : MonoBehaviour
             }
             Debug.Log("Trigger Works");
 
+        }
+
+        if (other.CompareTag("ipPackage"))
+        {
+            ipPackage = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("ControlPackage"))
+        {
+           
+            controlPackage = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Door"))
+        {
+            gm.Win();
         }
     }
 

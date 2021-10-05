@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] enemies;
     public Scene scene;
+    public string NextScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +22,15 @@ public class GameManager : MonoBehaviour
 
         if (enemies.Length == 0)
         {
-            Win();
+            //Win();
         }
 
     }
 
 
-    void Win()
+    public void Win()
     {
+        SceneManager.LoadSceneAsync(NextScene);
         Debug.Log("You Win");
     }
 
