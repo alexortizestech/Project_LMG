@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
+    
     public float count;
     public float limit;
     public NailedRigidbody nr;
@@ -25,11 +26,12 @@ public class TimeController : MonoBehaviour
 
         count += 1 * Time.deltaTime;
 
+
         if (mv.player.GetButtonUp("BulletTime"))
         {
             pressed++;
             
-            if (pressed%2!=0)
+            if (pressed%2!=0 && mv.canBulletTime)
             {
                 count = 0;
                 // count += 1 * Time.deltaTime;
@@ -37,7 +39,7 @@ public class TimeController : MonoBehaviour
                 nr.direction *= 4;
             }
 
-            if (pressed % 2 == 0)
+            if (pressed % 2 == 0 && mv.canBulletTime)
             {
                 ReturnTime();
             }

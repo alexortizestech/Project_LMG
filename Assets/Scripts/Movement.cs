@@ -64,16 +64,23 @@ public class Movement : MonoBehaviour
     [Space]
     [Header("Player")]
     public int Health;
-    public GameManager gm;
     public Vector3 lastPos;
     public GameObject ComboPlaceHolder,door;
-    public Scene currentScene;
     public AnalyticsEventTracker at;
     [SerializeField] public int playerID = 0;
     [SerializeField] public Player player;
+
+
+    [Space]
+    [Header("Management")]
+    public Scene currentScene;
+    public GameManager gm;
     public bool ipPackage, controlPackage;
     public int ipCount;
     [SerializeField] public int ipKills;
+    public int DashNerf;
+    public bool canDash, canBulletTime, canNail;
+
 
     // Start is called before the first frame update
     void Start()
@@ -221,7 +228,7 @@ public class Movement : MonoBehaviour
 
         if (player.GetButtonDown("Slash") && !hasDashed)
         {
-            if (CountSlash == 1)
+            if (CountSlash == 1 && canDash)
             {
                 if (xRaw != 0 || yRaw != 0)
                     Dash(xRaw, yRaw);
@@ -358,7 +365,7 @@ public class Movement : MonoBehaviour
         rb.velocity = Vector2.zero;
         Vector2 dir = new Vector2(x, y);
 
-        rb.velocity += dir.normalized * dashSpeed;
+        rb.velocity += dir.normalized * dashSpeed/DashNerf;
 
       
         StartCoroutine(DashWait());

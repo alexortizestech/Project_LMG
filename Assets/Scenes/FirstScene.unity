@@ -65527,8 +65527,23 @@ PrefabInstance:
       objectReference: {fileID: 1232568006}
     - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
         type: 3}
+      propertyPath: canDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
+        type: 3}
+      propertyPath: canNail
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
+        type: 3}
       propertyPath: ipKills
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
+        type: 3}
+      propertyPath: DashNerf
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
         type: 3}
@@ -65540,6 +65555,11 @@ PrefabInstance:
       propertyPath: SpriteSlash
       value: 
       objectReference: {fileID: 1561369547}
+    - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
+        type: 3}
+      propertyPath: canBulletTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 855462204106099225, guid: 8904d9b5daaffe8419c767109f047e5b,
         type: 3}
       propertyPath: ComboPlaceHolder

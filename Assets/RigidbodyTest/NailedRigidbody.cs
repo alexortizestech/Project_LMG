@@ -78,7 +78,7 @@ public class NailedRigidbody : MonoBehaviour
         
        
 
-        if (mv.player.GetButtonDown("Teleport"))
+        if (mv.player.GetButtonDown("Teleport") && mv.canNail)
         {
           
             if ((GameObject.Find("Sword(Clone)") == null))
