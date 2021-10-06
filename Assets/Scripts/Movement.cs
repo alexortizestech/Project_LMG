@@ -80,6 +80,7 @@ public class Movement : MonoBehaviour
     [SerializeField] public int ipKills;
     public int DashNerf;
     public bool canDash, canBulletTime, canNail;
+    public float TimeLevel;
 
 
     // Start is called before the first frame update
@@ -103,7 +104,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+        TimeLevel = Time.timeSinceLevelLoad;
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
@@ -241,9 +242,10 @@ public class Movement : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
-
+               
 
                 enemy.GetComponent<EnemyBehaviour>().TakeDamage(Damage);
+                
                 if (enemy.GetComponent<EnemyBehaviour>().Health>Damage)
                 {
                     Combo = false;
@@ -327,11 +329,17 @@ public class Movement : MonoBehaviour
 
     void Die()
     {
-        
-       AnalyticsResult analyticsResult= Analytics.CustomEvent("PlayerDeath",new Dictionary<string, object>{
+
+        AnalyticsResult analyticsResult = Analytics.CustomEvent("PlayerDeath", new Dictionary<string, object>{
            {
                "Level",currentScene.name }});
         Debug.Log("result" + analyticsResult);
+
+
+        AnalyticsResult analyticsTime = Analytics.CustomEvent("TimePlayed", new Dictionary<string, object>
+        {
+            {"Level",currentScene.name},
+            { "TimePlayed",TimeLevel} });
         Analytics.FlushEvents();
         gm.GameOver();
         Destroy(this.gameObject);
@@ -375,7 +383,7 @@ public class Movement : MonoBehaviour
 
     public void Killed()
     {
-        ipCount += 1;
+       
         if (Combo)
         {
            

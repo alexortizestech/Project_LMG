@@ -7613,6 +7613,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 1
 --- !u!212 &306424896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27613,6 +27614,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 0
 --- !u!4 &634289899
 Transform:
   m_ObjectHideFlags: 0
@@ -29139,10 +29141,10 @@ MonoBehaviour:
   playerMice: []
   moveOneElementPerAxisPress: 0
   setActionsById: 0
-  horizontalActionId: -1
-  verticalActionId: -1
-  submitActionId: -1
-  cancelActionId: -1
+  horizontalActionId: 6
+  verticalActionId: 7
+  submitActionId: 8
+  cancelActionId: 9
   m_HorizontalAxis: UIHorizontal
   m_VerticalAxis: UIVertical
   m_SubmitButton: UISubmit
@@ -29993,6 +29995,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1537450639343984151, guid: 03d13edc25f31f74ca53672b3a3d1071,
+        type: 3}
+      propertyPath: _userData.configVars.runInEditMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3265747612869487218, guid: 03d13edc25f31f74ca53672b3a3d1071,
         type: 3}
       propertyPath: m_Name
@@ -30309,6 +30316,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 1
 --- !u!4 &865298598
 Transform:
   m_ObjectHideFlags: 0
@@ -56094,6 +56102,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 0
 --- !u!4 &1559915754
 Transform:
   m_ObjectHideFlags: 0
@@ -60914,6 +60923,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 0
 --- !u!4 &1833688183
 Transform:
   m_ObjectHideFlags: 0
@@ -62288,6 +62298,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 0
 --- !u!4 &1920780022
 Transform:
   m_ObjectHideFlags: 0
@@ -62556,6 +62567,7 @@ MonoBehaviour:
   inRange: 0
   StartHealth: 0
   Failed: 0
+  ipProvider: 0
 --- !u!4 &1937266954
 Transform:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float inRange;
     public float StartHealth;
     public bool Failed;
+    public bool ipProvider;
 
     // Start is called before the first frame update
     void Start()
@@ -128,7 +129,10 @@ public class EnemyBehaviour : MonoBehaviour
     public void Die()
     {
 
-           
+        if (ipProvider == true)
+        {
+            Player.GetComponent<Movement>().ipCount += 1;
+        }
             Player.GetComponent<Movement>().Killed();
             Destroy(this.gameObject);
         
