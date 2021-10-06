@@ -7570,7 +7570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47997b20797d257478c52a6415706db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3.5
+  radius: 5
   angle: 90
   playerRef: {fileID: 691284184}
   targetMask:
@@ -7614,6 +7614,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 1
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!212 &306424896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27615,6 +27616,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 0
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &634289899
 Transform:
   m_ObjectHideFlags: 0
@@ -30317,6 +30319,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 1
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &865298598
 Transform:
   m_ObjectHideFlags: 0
@@ -56103,6 +56106,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 0
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1559915754
 Transform:
   m_ObjectHideFlags: 0
@@ -60924,6 +60928,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 0
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1833688183
 Transform:
   m_ObjectHideFlags: 0
@@ -62299,6 +62304,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 0
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1920780022
 Transform:
   m_ObjectHideFlags: 0
@@ -62568,6 +62574,7 @@ MonoBehaviour:
   StartHealth: 0
   Failed: 0
   ipProvider: 0
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1937266954
 Transform:
   m_ObjectHideFlags: 0

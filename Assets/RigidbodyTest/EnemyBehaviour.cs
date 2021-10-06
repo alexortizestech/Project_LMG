@@ -16,7 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
     public bool myFunctionDone;
     public GameObject Player;
     public string attack;
-    public float dashSpeed;
+    [SerializeField] public float dashSpeed;
     public VisionRange fov;
     public float inRange;
     public float StartHealth;
@@ -100,6 +100,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
+        
       //  myFunctionDone = false;
     }
 
@@ -159,15 +160,16 @@ public class EnemyBehaviour : MonoBehaviour
    
     public void SlashingAttack()
     {
-        StartCoroutine(DashingEnemy());
+        lastPos = player.position;
+        var destiny= lastPos - transform.position;
+        StartCoroutine(DashingEnemy(destiny));
     }
 
-    IEnumerator DashingEnemy()
+    IEnumerator DashingEnemy(Vector3 destiny)
     {
         inRange += 1 * Time.deltaTime;
-        var destiny = player.position - transform.position;
         rb.velocity = new Vector3(0, 0, 0);
-        rb.velocity = new Vector3(-player.position.x, 0, 0); //opcional
+        rb.velocity = new Vector3(-lastPos.x, 0, 0); //opcional
         yield return new WaitForSeconds(0.1f); //
         yield return new WaitForSeconds(0.5f); //1f
         rb.AddForce(destiny * dashSpeed);
