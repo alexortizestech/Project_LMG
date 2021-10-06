@@ -22,7 +22,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<PlayerMover>().Health -= 1;
+            other.GetComponent<Movement>().Health -= 1;
         }
     }
 }

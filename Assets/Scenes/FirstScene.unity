@@ -947,7 +947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &87957545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7570,7 +7570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47997b20797d257478c52a6415706db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7.48
+  radius: 3.5
   angle: 90
   playerRef: {fileID: 691284184}
   targetMask:
@@ -7597,7 +7597,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 466709652}
   scuttleSpeed: 50
   turnSpeed: 3
-  enemy: {fileID: 11400000, guid: 2eb35ad8834253e4e90a914a73c93a4d, type: 2}
+  enemy: {fileID: 11400000, guid: a2b7cc5dbce263f40a9cfa4c1c7427a7, type: 2}
   Direction: {x: 0, y: 0, z: 0}
   Health: 0
   limitL: 0

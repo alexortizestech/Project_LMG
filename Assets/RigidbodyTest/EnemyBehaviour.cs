@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float StartHealth;
     public bool Failed;
     public bool ipProvider;
+    public Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
